@@ -1,0 +1,129 @@
+.hidden {
+    color: transparent;
+}
+
+body {
+
+    background-image: url("../imgs/Fuego.gif");
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir completamente el fondo */
+    background-position: center; /* Centra la imagen de fondo */
+    color: #fff;
+    font-family: 'SF Pixelate', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0; /* Elimina el margen predeterminado del cuerpo */
+}
+
+
+header {
+    width: 100%;
+    height: 80px;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+nav{
+    text-align: right;
+    padding: 30px 50px 0 0;
+}
+
+nav > a{
+    color:#fff;
+    font-weight: 300;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+nav > a:hover{
+    text-decoration: underline;
+}
+
+
+#wordContainer {
+    margin-top: 20px;   
+}
+
+.letter {
+    margin: 0 7px;
+    position: relative;
+    text-align: center;
+}
+
+.letter::after{
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+    min-width: 12px;
+}
+
+#startButton {
+    margin-top: 20px;
+    appearance: none;
+    font-family: 'SF Pixelate', sans-serif;
+    border: none;
+    width: 300px;
+    padding: 10px;
+    background: #d95d39;
+    color: #fff;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#newButton {
+    margin-top: 20px;
+    margin-left: 60%; /* Ajusta el margen izquierdo según tus necesidades */
+    appearance: none;
+    font-family: 'SF Pixelate', sans-serif;
+    border: none;
+    width: 100px;
+    padding: 10px;
+    background: #d95d39;
+    color: #fff;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.letter-image {
+    width: 180px; /* Ajusta el ancho según tus necesidades */
+    height: 180px; /* Ajusta la altura según tus necesidades */
+    cursor: pointer;
+    margin: 5px; /* Ajusta el margen según tus necesidades */
+    display: none; /* Oculta las imágenes por defecto */
+  }
+
+ /* styles.css */
+#letterTable {
+    border-collapse: collapse;
+  }
+  
+  #letterTable img {
+    width: 70px; /* Ajusta el ancho según tus necesidades */
+    height: 70px; /* Ajusta la altura según tus necesidades */
+    cursor: pointer;
+    margin: 5px; /* Ajusta el margen según tus necesidades */
+    display: none; /* Oculta las imágenes por defecto */
+    border: 1px solid #ddd; /* Agrega bordes para separar las imágenes */
+  }
+  
+  #letterTable td {
+    padding: 5px; /* Ajusta el relleno según tus necesidades */
+  }
+  
+  #scoreSection {
+    position: absolute;
+    top: 50%; /* Ajusta según sea necesario */
+    left: 5%; /* Ajusta según sea necesario */
+    transform: translateY(-50%);
+  }

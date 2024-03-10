@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Página web Hand Tracking</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/alexcgdesign.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/AcercDnos.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="#">Acerca de nosotros</a>
+            <a href="aprende">Aprende</a>
+            <a href="juegos">Juegos</a>
+        </nav>
+        <section class="textos-header">
+            <h1>Acerca de Nosotros</h1>
+            <h2>Descubre lo que nos inspiró e impulsó a seguir adelante</h2>
+        </section>
+        <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
+                style="height: 100%; width: 100%;">
+                <path d="M0.00,49.98 C150.00,150.00 349.20,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                    style="stroke: none; fill: #fff;"></path>
+            </svg></div>
+    </header>
+    <main>
+        <h1 style="text-align: center;">¿Por qué Hand Traking?</h1>
+        <br>
+        <section class="contenedor-sobre-nosotros">
+            <div class="texto">
+                <p>
+                    Nuestra página web comenzó como una idea para enseñar a cualquier persona que quiera o necesite aprender el lenguaje de señas. Para esto se utilizó Hand Tracking, una técnica de seguimiento manual, y diversos juegos que estimulen el aprendizaje.
+                </p>
+            </div>
+            <div class="img-main">
+                <img src="{{ url_for('static', filename='img/Imagen3.png') }}" alt="Descripción de la imagen"> 
+            </div>
+        </section>
+        <br>
+        <h1 style="text-align: center;">Nuestros objetivos</h1>
+        <br>
+        <section class="contenedor-sobre-nosotros">
+            <div class="texto">
+                <p>
+                    Desarrollar un sistema de Hand Tracking aplicado a juegos dinámicos, mediante la implementación de un programa de reconocimiento que permita capturar y seguir los movimientos de las manos del usuario en tiempo real. La finalidad es proporcionar una interfaz intuitiva y práctica para la interacción en juegos.
+                </p>
+            </div>
+            <div class="img-main">
+                <img src="{{ url_for('static', filename='img/Imagen0.png') }}" alt="Descripción de la imagen"> 
+            </div>
+        </section>
+        <br>
+    </main>
+
+    <section class="about-services">
+        <div class="contenedor">
+            <h2 class="titulo">Integrantes</h2>  
+            <div class="servicio-cont">
+                <div class="servicio-ind">
+                    <img src="{{ url_for('static', filename='img/Damian.png') }}" alt="">
+                    <h3>Damián Criollo (Desarrollador WEB)</h3>
+                    <p> Encargado de crear el sitio web.
+                        El trabajo implica el uso de diversos lenguajes de programación, 
+                        tecnologías y herramientas para construir páginas web que sean 
+                        funcionales, eficientes y estéticamente atractivas.</p>
+                </div>
+                <div class="servicio-ind">
+                    <img src="{{ url_for('static', filename='img/Imagen7.png') }}" alt="">
+                    <h3>Nicolás Ulloa (Desarrollador WEB)</h3>
+                    <p> Encargado de crear el sitio web.
+                        El trabajo implica el uso de diversos lenguajes de programación, 
+                        tecnologías y herramientas para construir páginas web que sean 
+                        funcionales, eficientes y estéticamente atractivas.</p>
+                </div>
+                <div class="servicio-ind">
+                    <img src="{{ url_for('static', filename='img/Vasquez.png') }}" alt="">
+                    <h3>Andrés Vásquez (Desarrollador WEB)</h3>
+                    <p> Encargado de crear el sitio web.
+                        El trabajo implica el uso de diversos lenguajes de programación, 
+                        tecnologías y herramientas para construir páginas web que sean 
+                        funcionales, eficientes y estéticamente atractivas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <button id="scrollBtn" onclick="scrollToTop()" title="Ir arriba">&uarr;</button>
+
+</main>
+    <footer>
+        <div class="contenedor-footer">
+            <div class="content-foo">
+                <h4>Phone</h4>
+                <p>8296312</p>
+            </div>
+            <div class="content-foo">
+                <h4>Email</h4>
+                <p>8296312</p>
+            </div>
+            <div class="content-foo">
+                <h4>Location</h4>
+                <p>8296312</p>
+            </div>
+        </div>
+        <h2 class="titulo-final">&copy; UETS| Progrmamos con el corazón</h2>
+    </footer>
+
+    <script>
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > window.innerHeight / 2 || document.documentElement.scrollTop > window.innerHeight / 2) {
+                document.getElementById("scrollBtn").style.display = "block";
+            } else {
+                document.getElementById("scrollBtn").style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            document.body.scrollTop = 0; // Para Safari
+            document.documentElement.scrollTop = 0; // Para Chrome, Firefox, IE y Opera
+        }
+    </script>
+
+</body>
+
+</html>

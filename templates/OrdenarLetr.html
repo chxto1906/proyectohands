@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet">
+    <title>Construye la Palabra</title>
+    <style>
+        /* Estilos del juego */
+        body {
+        background-image: url("{{ url_for('static', filename='imgs/Luna.gif') }}");
+        background-size: cover; /* Para cubrir toda la pantalla /
+        background-position: center; / Para centrar el fondo */
+        font-family: 'Open Sans', sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100vh;
+        margin: 0;
+        }
+
+        header {
+            align-self: flex-end;
+            margin-top: 20px;
+            margin-right: 20px;
+        }
+
+        #game-container {
+            text-align: center;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin-bottom: 7%;
+        }
+
+        #word-container {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #letters-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .letter {
+            cursor: pointer;
+            padding: 10px;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            margin: 5px;
+            background-color: #60ade0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .letter img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        h1 {
+            font-size: 80px;
+            color: #dfe0e2;
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        nav {
+            text-align: right;
+            margin-top: 20px;
+            margin-right: 20px;
+        }
+
+        nav > a {
+            color: #fff;
+            font-weight: 300;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        nav > a:hover {
+            text-decoration: underline;
+        }
+
+        .boton-especial {
+        padding: 10px 20px;
+        background-color: #ececec;
+        color: #5478e3;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-left: 60%;
+        }   
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="acercade">Acerca de nosotros</a>
+            <a href="aprende">Aprende</a>
+            <a href="#">Juegos</a>
+        </nav>
+    </header>
+
+    <h1>Ordena la Palabra</h1>
+
+    <div id="game-container">
+        <div id="word-container"></div>
+        <div id="letters-container"></div>
+        <div id="attempts-container"></div>
+    </div>
+
+    <button class="boton-especial"  onclick="reiniciarJuego()">Nuevo</button>
+
+    <script>
+const palabras = ["HOLA", "HOGAR", "LENGUAJE", "SONREIR", "JUGAR", "COMER", "SALUDAR", "AMIGOS", "DIVERTIRSE", "ALIMENTAR", "FELICIDAD", "APRENDER", "DISFRUTAR", "ENTRETENER"];
+        let palabrasRestantes = [...palabras];
+
+        let palabraActual;
+        let palabraDesordenada;
+        let palabraMostrada;
+        let intentos;
+
+        function iniciarJuego() {
+            if (palabrasRestantes.length === 0) {
+                alert('¡Has completado todas las palabras!');
+                reiniciarJuego();
+                return;
+            }
+
+            palabraActual = seleccionarPalabraAleatoria();
+            palabraDesordenada = desordenarPalabra(palabraActual);
+            palabraMostrada = '';
+            intentos = palabraActual.length + 4;
+
+            mostrarPalabra();
+            mostrarLetras();
+            mostrarIntentos();
+        }
+
+        function seleccionarPalabraAleatoria() {
+            const indice = Math.floor(Math.random() * palabrasRestantes.length);
+            const palabraSeleccionada = palabrasRestantes[indice];
+
+            palabrasRestantes.splice(indice, 1);
+
+            return palabraSeleccionada;
+        }
+
+        function desordenarPalabra(palabra) {
+            return palabra.split('').sort(() => Math.random() - 0.5).join('');
+        }
+
+        function mostrarPalabra() {
+            const wordContainer = document.getElementById('word-container');
+            wordContainer.textContent = palabraMostrada;
+        }
+
+        function mostrarLetras() {
+            const lettersContainer = document.getElementById('letters-container');
+            lettersContainer.innerHTML = '';
+
+            for (let letra of palabraDesordenada) {
+                const letraElemento = document.createElement('div');
+                letraElemento.className = 'letter';
+                letraElemento.addEventListener('click', () => seleccionarLetra(letra));
+
+                const imgElemento = document.createElement('img');
+                
+                const nuevaUrl = "{{ url_for('static', filename='imgsSenas/LETRA.png') }}".replace('LETRA', letra);
+
+                imgElemento.src = nuevaUrl;
+                imgElemento.alt = letra;
+
+                letraElemento.appendChild(imgElemento);
+                lettersContainer.appendChild(letraElemento);
+            }
+        }
+
+        function mostrarIntentos() {
+            const attemptsContainer = document.getElementById('attempts-container');
+            attemptsContainer.textContent = `Intentos restantes: ${intentos}`;
+        }
+
+        function seleccionarLetra(letra) {
+            if (letra === palabraActual[0]) {
+                palabraActual = palabraActual.slice(1);
+                palabraMostrada += letra;
+
+                if (palabraActual.length === 0) {
+                    if (palabraMostrada === palabraDesordenada) {
+                        mostrarFelicitaciones();
+                    } else {
+                        reiniciarJuego();
+                    }
+                }
+            } else {
+                intentos--;
+
+                if (intentos === 0) {
+                    alert('¡Agotaste tus intentos! Sigue intentando');
+                    reiniciarJuego();
+                }
+            }
+
+            mostrarPalabra();
+            mostrarIntentos();
+        }
+
+        function mostrarFelicitaciones() {
+            reiniciarJuego();
+        }
+
+        function reiniciarJuego() {
+            palabrasRestantes = [...palabras];
+            iniciarJuego();
+        }
+
+        document.addEventListener('DOMContentLoaded', iniciarJuego);
+
+        function mostrarPalabra() {
+        const wordContainer = document.getElementById('word-container');
+        wordContainer.textContent = palabraActual;
+        }
+
+        function reiniciarJuego() {
+            palabrasRestantes = [...palabras];
+            iniciarJuego();
+        }
+
+        document.addEventListener('DOMContentLoaded', iniciarJuego);
+
+    </script>
+</body>
+
+</html>

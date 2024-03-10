@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Explicación de Juegos</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/alexcgdesign.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/explic_juegos.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="acercade">Acerca de nosotros</a>
+            <a href="aprende">Aprende</a>
+            <a href="#">Juegos</a>
+        </nav>
+        <section class="textos-header">
+            <h1>Explicación de Juegos</h1>
+            <h2>Descubre cómo jugar y disfrutar</h2>
+        </section>
+        <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
+                style="height: 100%; width: 100%;">
+                <path d="M0.00,49.98 C150.00,150.00 349.20,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                    style="stroke: none; fill: #fff;"></path>
+            </svg></div>
+    </header>
+    <main>
+
+        <section class="about-services">
+            <div class="contenedor">
+                <div class="explicacion">
+                    <h2 class="titulo">El Ahorcado</h2>
+                    <div class="servicio-ind">
+                        <img src="{{ url_for('static', filename='img/Ahorcado.jpg') }}" alt="">
+                    </div>
+                    <div class="explicacion-texto">
+                        <p>
+                            Desafía tu mente mientras intentas adivinar la palabra oculta antes de que se complete el dibujo del ahorcado. ¡Demuestra tu habilidad lingüística y disfruta de la diversión en cada intento!
+                        </p>
+                    </div>
+                    <button class="boton"><a href="juegos/ahorcado">Jugar</a></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-services">
+            <div class="contenedor">
+                <div class="explicacion">
+                    <h2 class="titulo">Memorama</h2>
+                    <div class="servicio-ind">
+                        <img src="{{ url_for('static', filename='img/Memorama.jpeg') }}" alt="">
+                    </div>
+                    <div class="explicacion-texto">
+                        <p>
+                            Gira las cartas y encuentra los pares correspondientes mientras compites contra el tiempo. Ejercita tu capacidad de concentración y disfruta de la satisfacción de completar cada nivel. ¡Un juego perfecto para desafiar tu mente y mejorar tus habilidades de memoria!
+                        </p>
+                    </div>
+                    <button class="boton"><a href="juegos/memorama">Jugar</a></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-services">
+            <div class="contenedor">
+                <div class="explicacion">
+                    <h2 class="titulo">Sopa de letras</h2>
+                    <div class="servicio-ind">
+                        <img src="{{ url_for('static', filename='img/SopLetras.jpeg') }}" alt="">
+                    </div>
+                    <div class="explicacion-texto">
+                        <p>
+                            Explora la cuadrícula de letras y encuentra las palabras escondidas en cualquier dirección. Desde palabras sencillas hasta desafíos más complejos, la Sopa de Letras te invita a explorar tu habilidad para descifrar palabras en un laberinto de letras. ¡Demuestra tu destreza y disfruta de la emoción de encontrar cada palabra oculta!                        </p>
+                    </div>
+                    <button class="boton"><a href="juegos/sopaletras">Jugar</a></button>
+                                </div>
+            </div>
+        </section>
+
+        <section class="about-services">
+            <div class="contenedor">
+                <div class="explicacion">
+                    <h2 class="titulo">Ordena la palabra</h2>
+                    <div class="servicio-ind">
+                        <img src="{{ url_for('static', filename='img/ordena.jpeg') }}" alt="">
+                    </div>
+                    <div class="explicacion-texto">
+                        <p>
+                            Enfréntate a un desafío donde las letras se mezclan caóticamente, y tu tarea es organizarlas para descubrir la palabra correcta. ¿Podrás resolver cada acertijo y convertirte en el maestro de la organización léxica?                    </div>
+                    <button class="boton"><a href="juegos/ordenapalabras">Jugar</a></button>
+                                </div>
+            </div>
+        </section>
+
+        <button id="scrollBtn" onclick="scrollToTop()" title="Ir arriba">&uarr;</button>
+
+    </main>
+    <footer>
+        <div class="contenedor-footer">
+            <div class="content-foo">
+                <h4>Phone</h4>
+                <p>8296312</p>
+            </div>
+            <div class="content-foo">
+                <h4>Email</h4>
+                <p>8296312</p>
+            </div>
+            <div class="content-foo">
+                <h4>Location</h4>
+                <p>8296312</p>
+            </div>
+        </div>
+        <h2 class="titulo-final">&copy; UETS| Progrmamos con el corazón</h2>
+    </footer>
+    <script>
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > window.innerHeight / 2 || document.documentElement.scrollTop > window.innerHeight / 2) {
+                document.getElementById("scrollBtn").style.display = "block";
+            } else {
+                document.getElementById("scrollBtn").style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            document.body.scrollTop = 0; // Para Safari
+            document.documentElement.scrollTop = 0; // Para Chrome, Firefox, IE y Opera
+        }
+    </script>
+</body>
+</html>

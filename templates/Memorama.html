@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Memorama</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="acercade">Acerca de nosotros</a>
+            <a href="aprende">Aprende</a>
+            <a href="juegos">Juegos</a>
+        </nav>
+    </header>
+
+    <h1 style="color: aliceblue; font-size: 90px; margin-top: 1%;">Juego de memoria</h1>
+
+    <!-- CSS -->
+    <!-- efectos visuales -->
+    <style>
+        :root {
+            --w: calc(70vw / 6);
+            --h: calc(70vh / 4);
+        }
+
+        * {
+            transition: all 0.5s;
+        }
+
+        body {
+            background-image: url("{{ url_for('static', filename='imgs/Naranja.webp') }}");
+            background-size: cover;
+            /* Para cubrir toda la pantalla /
+            background-position: center; / Para centrar el fondo */
+            font-family: 'Open Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+        }
+
+        header {
+            width: 100%;
+            height: 80px;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        nav {
+            text-align: right;
+            padding: 30px 50px 0 0;
+        }
+
+        nav>a {
+            color: #fff;
+            font-weight: 300;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        nav>a:hover {
+            text-decoration: underline;
+        }
+
+        div {
+            display: inline-block;
+        }
+
+        .area-tarjeta,
+        .tarjeta,
+        .cara {
+            cursor: pointer;
+            width: var(--w);
+            min-width: 100px;
+            height: var(--h);
+        }
+
+        .tarjeta {
+            position: relative;
+            transform-style: preserve-3d;
+            animation: iniciar 5s;
+        }
+
+        .cara {
+            position: absolute;
+            backface-visibility: hidden;
+            font-size: 500%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 30px;
+        }
+
+        .trasera {
+            border-radius: 30px;
+            background-color: rgb(243, 142, 142);
+            transform: rotateY(180deg);
+        }
+
+        .superior {
+            background: linear-gradient(rgb(243, 142, 142), rgba(13, 226, 70, 0.233));
+        }
+
+        .nuevo-juego {
+            cursor: pointer;
+            background: linear-gradient(rgb(243, 142, 142), rgba(13, 226, 70, 0.233));
+            padding: 20px;
+            border-radius: 50px;
+            font-size: 130%;
+            margin-top: 5%;
+        }
+
+        .acertada .trasera {
+            background-color: rgb(181, 226, 194);
+        }
+
+        #mensaje-felicitaciones {
+            display: none;
+            color: white;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        #tablero {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    gap: 10px; /* Espacio entre las tarjetas */
+    margin-top: 20px; /* Ajuste del margen superior */
+}
+
+
+    </style>
+
+    <!-- HTML -->
+    <!-- estructura visual -->
+
+    <div id="tablero"></div>
+    <div id="mensaje-felicitaciones"></div>
+
+    <br>
+
+    <div class="nuevo-juego" onclick="generarTablero()">
+        Nuevo Juego
+    </div>
+
+    <!-- JS -->
+    <!-- parte lógica -->
+    <script>
+
+        let iconos = []
+        let selecciones = []
+
+        generarTablero()
+
+        function cargarIconos() {
+            iconos = [
+                ['<img src="{{ url_for("static", filename="imgsSenas/A.png") }}">', '{{ url_for("static", filename="sounds/sonido_a.mp3") }}'],
+                ['<img src="{{ url_for("static", filename="imgsSenas/E.png") }}">', '{{ url_for("static", filename="sounds/sonido_e.mp3") }}'],
+                ['<img src="{{ url_for("static", filename="imgsSenas/I.png") }}">', '{{ url_for("static", filename="sounds/sonido_i.mp3") }}'],
+                ['<img src="{{ url_for("static", filename="imgsSenas/O.png") }}">', '{{ url_for("static", filename="sounds/sonido_o.mp3") }}'],
+                ['<img src="{{ url_for("static", filename="imgsSenas/U.png") }}">', '{{ url_for("static", filename="sounds/sonido_u.mp3") }}'],
+                ['<img src="{{ url_for("static", filename="imgsSenas/B.png") }}">', '{{ url_for("static", filename="sounds/sonido_b.mp3") }}'],
+                ['<img src="{{ url_for("static", filename="imgsSenas/C.png") }}">', '{{ url_for("static", filename="sounds/sonido_c.mp3") }}'],
+                ['<img src="{{ url_for("static", filename="imgsSenas/L.png") }}">', '{{ url_for("static", filename="sounds/sonido_l.mp3") }}'],
+                ['<img src="{{ url_for("static", filename="imgsSenas/M.png") }}">', '{{ url_for("static", filename="sounds/sonido_m.mp3") }}'],
+                ['<img src="{{ url_for("static", filename="imgsSenas/J.png") }}">', '{{ url_for("static", filename="sounds/sonido_j.mp3") }}'],
+                ['<img src="{{ url_for("static", filename="imgsSenas/G.png") }}">', '{{ url_for("static", filename="sounds/sonido_g.mp3") }}'],
+                ['<img src="{{ url_for("static", filename="imgsSenas/S.png") }}">', '{{ url_for("static", filename="sounds/sonido_s.mp3") }}'],
+            ]
+        }
+
+        function generarTablero() {
+            cargarIconos()
+            selecciones = []
+            let tablero = document.getElementById("tablero")
+            let tarjetas = []
+            for (let i = 0; i < 24; i++) {
+                tarjetas.push(`
+                <div class="area-tarjeta" onclick="seleccionarTarjeta(${i})">
+                    <div class="tarjeta" id="tarjeta${i}">
+                        <div class="cara trasera" id="trasera${i}">
+                            ${iconos[Math.floor(i / 2)][0]}
+                        </div>
+                        <div class="cara superior">
+                            <i class="far fa-question-circle"></i>
+                        </div>
+                    </div>
+                </div>        
+                `)
+            }
+            tarjetas.sort(() => Math.random() - 0.5)
+            tablero.innerHTML = tarjetas.join(" ")
+        }
+
+        function seleccionarTarjeta(i) {
+            let tarjeta = document.getElementById("tarjeta" + i)
+            let sonido = new Audio(iconos[Math.floor(i / 2)][1]);
+            if (tarjeta.style.transform != "rotateY(180deg)") {
+                tarjeta.style.transform = "rotateY(180deg)"
+                sonido.play();
+                selecciones.push(i)
+            }
+            if (selecciones.length == 2) {
+                deseleccionar(selecciones)
+                selecciones = []
+            }
+        }
+
+        function deseleccionar(selecciones) {
+            setTimeout(() => {
+                let trasera1 = document.getElementById("trasera" + selecciones[0])
+                let trasera2 = document.getElementById("trasera" + selecciones[1])
+                if (trasera1.innerHTML != trasera2.innerHTML) {
+                    let tarjeta1 = document.getElementById("tarjeta" + selecciones[0])
+                    let tarjeta2 = document.getElementById("tarjeta" + selecciones[1])
+                    tarjeta1.style.transform = "rotateY(0deg)"
+                    tarjeta2.style.transform = "rotateY(0deg)"
+                } else {
+                    let tarjeta1 = document.getElementById("tarjeta" + selecciones[0])
+                    let tarjeta2 = document.getElementById("tarjeta" + selecciones[1])
+                    tarjeta1.classList.add('acertada')
+                    tarjeta2.classList.add('acertada')
+                    mostrarMensajeDeFelicitaciones(trasera1.innerHTML);
+                    verificarFinDelJuego();
+                }
+            }, 1000);
+        }
+
+        function mostrarMensajeDeFelicitaciones(letra) {
+    let mensaje = document.getElementById('mensaje-felicitaciones');
+    mensaje.style.display = 'block';
+    // Extraer la letra del nombre del archivo usando una expresión regular
+    let match = letra.match(/(\w+)\.png/);
+    if (match) {
+        let letraExtraida = match[1];
+        mensaje.innerText = `Felicidades has encontrado la letra ${letraExtraida}`;
+        mensaje.style.textAlign = 'left'; // Alineación a la izquierda
+    } else {
+        mensaje.innerText = `No se pudo determinar la letra`;
+    }
+
+    // Ocultar el mensaje después de 3 segundos
+    setTimeout(() => {
+        mensaje.style.display = 'none';
+    }, 2000);
+}
+
+
+        function verificarFinDelJuego() {
+            // Obtén todas las tarjetas
+            let todasLasTarjetas = document.querySelectorAll('.tarjeta');
+
+            // Verifica si todas las tarjetas tienen la clase 'acertada'
+            if (Array.from(todasLasTarjetas).every(tarjeta => tarjeta.classList.contains('acertada'))) {
+                // Todas las tarjetas son correctas, redirige a una página de felicitaciones con efectos
+                window.location.href = '/juegos/memorama/felicitaciones';
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>

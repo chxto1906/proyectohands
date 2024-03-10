@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Página web Hand Tracking</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/alexcgdesign.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"> 
+    <style>
+        #videoFeed {
+            display: block;
+            margin: 0 auto;
+            border: 1px solid;
+            height: 400px !important;
+            width: 600px !important;
+        }
+    </style>
+</head>
+
+<style>
+    p {
+        font-size: 20px;
+    }
+
+    h1, h4 {
+        color: #6e94eb;
+        text-align: center;
+    }
+
+</style>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="acercade">Acerca de nosotros</a>
+            <a href="#">Aprende</a>
+            <a href="juegos">Juegos</a>
+        </nav>
+        <section class="textos-header">
+            <h1>Aprende y Practica</h1>
+            <h2>Explora cada una de las señas</h2>
+        </section>
+        <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
+                style="height: 100%; width: 100%;">
+                <path d="M0.00,49.98 C150.00,150.00 349.20,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                    style="stroke: none; fill: #fff;"></path>
+            </svg></div>
+    </header>
+    <main>
+
+        <h1 style="padding: 50px;">Abecedario en lenguaje de señas</h1>
+
+        <div class="grid-container">
+            <!-- Letra A -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/A.png') }}" alt="Letra A en lenguaje de señas">
+                <p>A</p>
+            </div>
+            <!-- Letra B -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/B.png') }}" alt="Letra B en lenguaje de señas">
+                <p>B</p>
+            </div>
+            <!-- Letra C -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/C.png') }}" alt="Letra C en lenguaje de señas">
+                <p>C</p>
+            </div>
+            <!-- Letra D -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/D.png') }}" alt="Letra D en lenguaje de señas">
+                <p>D</p>
+            </div>
+            <!-- Letra E -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/E.png') }}" alt="Letra E en lenguaje de señas">
+                <p>E</p>
+            </div>
+            <!-- Letra F -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/F.png') }}" alt="Letra F en lenguaje de señas">
+                <p>F</p>
+            </div>
+            <!-- Letra G -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/G.png') }}" alt="Letra G en lenguaje de señas">
+                <p>G</p>
+            </div>
+            <!-- Letra H -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/H.png') }}" alt="Letra H en lenguaje de señas">
+                <p>H</p>
+            </div>
+            <!-- Letra I -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/I.png') }}" alt="Letra I en lenguaje de señas">
+                <p>I</p>
+            </div>
+            <!-- Letra J -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/J.png') }}" alt="Letra J en lenguaje de señas">
+                <p>J</p>
+            </div>
+            <!-- Letra K -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/K.png') }}" alt="Letra K en lenguaje de señas">
+                <p>K</p>
+            </div>
+            <!-- Letra L -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/L.png') }}" alt="Letra L en lenguaje de señas">
+                <p>L</p>
+            </div>
+            <!-- Letra M -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/M.png') }}" alt="Letra M en lenguaje de señas">
+                <p>M</p>
+            </div>
+            <!-- Letra N -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/N.png') }}" alt="Letra N en lenguaje de señas">
+                <p>N</p>
+            </div>
+            <!-- Letra O -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/O.png') }}" alt="Letra O en lenguaje de señas">
+                <p>O</p>
+            </div>
+            <!-- Letra P -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/P.png') }}" alt="Letra P en lenguaje de señas">
+                <p>P</p>
+            </div>
+            <!-- Letra Q -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/Q.png') }}" alt="Letra Q en lenguaje de señas">
+                <p>Q</p>
+            </div>
+            <!-- Letra R -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/R.png') }}" alt="Letra R en lenguaje de señas">
+                <p>R</p>
+            </div>
+            <!-- Letra S -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/S.png') }}" alt="Letra S en lenguaje de señas">
+                <p>S</p>
+            </div>
+            <!-- Letra T -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/T.png') }}" alt="Letra T en lenguaje de señas">
+                <p>T</p>
+            </div>
+            <!-- Letra U -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/U.png') }}" alt="Letra U en lenguaje de señas">
+                <p>U</p>
+            </div>
+            <!-- Letra V -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/V.png') }}" alt="Letra V en lenguaje de señas">
+                <p>V</p>
+            </div>
+            <!-- Letra W -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/W.png') }}" alt="Letra W en lenguaje de señas">
+                <p>W</p>
+            </div>
+            <!-- Letra X -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/X.png') }}" alt="Letra X en lenguaje de señas">
+                <p>X</p>
+            </div>
+            <!-- Letra Y -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/Y.png') }}" alt="Letra Y en lenguaje de señas">
+                <p>Y</p>
+            </div>
+            <!-- Letra Z -->
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename='imgsSenas/Z.png') }}" alt="Letra Z en lenguaje de señas">
+                <p>Z</p>
+            </div>
+        </div>
+
+        <h1 style="padding: 50px;">
+            Practica con nuestra interfaz
+        </h1>
+        <h4>Acerca tu mano a la cámara</h4>
+         <img id="videoFeed" src="{{ url_for('video_feed') }}" alt="Cargando..." />
+    </main>    
+    <footer>
+        <div class="contenedor-footer">
+            <div class="content-foo">           
+                <h4>Phone</h4>
+                <p>8296312</p>
+            </div>
+            <div class="content-foo">
+                <h4>Email</h4>
+                <p>8296312</p>
+            </div>
+            <div class="content-foo">
+                <h4>Location</h4>
+                <p>8296312</p>
+            </div>
+        </div>
+        <h2 class="titulo-final">&copy; UETS| Progrmamos con el corazón</h2>
+    </footer>
+</body>
+
+</html>

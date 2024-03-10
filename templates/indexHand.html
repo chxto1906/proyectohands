@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Detection</title>
+    <style>
+        img {
+            display: block;
+            margin: 0 auto;
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <h1>Acerca tu mano a la camara</h1>
+    <img id="videoFeed" width="800px" height="500px" src="{{ url_for('video_feed') }}" alt="Cargando..." />
+</body>
+</html>

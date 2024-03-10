@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Página web Hand Tracking</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/alexcgdesign.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="acercade">Acerca de nosotros</a>
+            <a href="aprende">Aprende</a>
+            <a href="juegos">Juegos</a>
+        </nav>
+        <section class="textos-header">
+            <h1>Hand Tracking</h1>
+            <h2>Aprende y Practica</h2>
+        </section>
+        <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
+                style="height: 100%; width: 100%;">
+                <path d="M0.00,49.98 C150.00,150.00 349.20,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                    style="stroke: none; fill: #fff;"></path>
+            </svg></div>
+    </header>
+    <main>
+        <h1 style="text-align: center;">Nuestro Proyecto</h1>
+        <br>
+        <h2>¿Qué es el hand tracking?</h2>
+        <br>
+        <p>
+            El hand tracking es una tecnología que permite seguir y detectar los movimientos de las manos sin necesidad de dispositivos externos como guantes o controles. Utiliza cámaras y algoritmos avanzados para reconocer y procesar los gestos de las manos.
+        </p>
+<br>
+        <h2>Beneficios del hand tracking</h2>
+        <br>
+        <p>
+            - Interacción natural sin necesidad de controles externos.
+            <br>
+            - Mayor inmersión en experiencias virtuales y aumentadas.
+            <br>
+            - Aplicaciones en campos como la realidad virtual, juegos, simulaciones, y más.
+            <br>
+        </p>
+
+        <!-- Puedes agregar imágenes aquí según sea necesario -->
+        <div class="img-main">
+            <img src="{{ url_for('static', filename='imgs/hand.png') }}" alt="Descripción de la imagen"> 
+        </div>
+
+        <h2>Aplicaciones del hand tracking</h2>
+        <br>
+        <p>
+            - Experiencias de realidad virtual y aumentada.
+            <br>
+            - Control de gestos en videojuegos.
+            <br>
+            - Simulaciones médicas y entrenamiento.
+            <br>
+            - Navegación sin contacto en interfaces de usuario.
+        </p>
+    </main>
+        <section class="portafolio">
+            <div class="contenedor">
+                <h2 class="titulo">Portafolio</h2>
+                <div class="galeria-port">
+                    <div class="imagen-port">
+                        <img src="{{ url_for('static', filename='img/Imagen1.png') }}" alt="">
+                        <div class="hover-galeria">
+                            <img src="{{ url_for('static', filename='img/icono1.png') }}" alt="">
+                            <p>Nuestro trabajo</p>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="{{ url_for('static', filename='img/Imagen3.png') }}" alt="">
+                        <div class="hover-galeria">
+                            <img src="{{ url_for('static', filename='img/icono1.png') }}" alt="">
+                            <p>Nuestro trabajo</p>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="{{ url_for('static', filename='img/Imagen7.png') }}" alt="">
+                        <div class="hover-galeria">
+                            <img src="{{ url_for('static', filename='img/icono1.png') }}" alt="">
+                            <p>Nuestro trabajo</p>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="{{ url_for('static', filename='img/Imagen8.png') }}" alt="">
+                        <div class="hover-galeria">
+                            <img src="{{ url_for('static', filename='img/icono1.png') }}" alt="">
+                            <p>Nuestro trabajo</p>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="{{ url_for('static', filename='img/Imagen2.png') }}" alt="">
+                        <div class="hover-galeria">
+                            <img src="{{ url_for('static', filename='img/icono1.png') }}" alt="">
+                            <p>Nuestro trabajo</p>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="{{ url_for('static', filename='img/Imagen4.png') }}" alt="">
+                        <div class="hover-galeria">
+                            <img src="{{ url_for('static', filename='img/icono1.png') }}" alt="">
+                            <p>Nuestro trabajo</p>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="{{ url_for('static', filename='img/Imagen5.png') }}" alt="">
+                        <div class="hover-galeria">
+                            <img src="{{ url_for('static', filename='img/icono1.png') }}" alt="">
+                            <p>Nuestro trabajo</p>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="{{ url_for('static', filename='img/Imagen0.png') }}" alt="">
+                        <div class="hover-galeria">
+                            <img src="{{ url_for('static', filename='img/icono1.png') }}" alt="">
+                            <p>Nuestro trabajo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="about-services">
+            <div class="contenedor">
+                <h2 class="titulo">Juegos</h2>  
+                <div class="servicio-cont">
+                    <div class="servicio-ind">
+                        <img src="{{ url_for('static', filename='img/Ahorcado.jpg') }}" alt="">
+                        <h3>El Ahorcado</h3>
+                        <p>Sumérgete en la emoción y la tensión de este clásico juego de palabras.</p>
+                    </div>
+                    <div class="servicio-ind">
+                        <img src="{{ url_for('static', filename='img/Memorama.jpeg') }}" alt="">
+                        <h3>Memorama </h3>
+                        <p>¡Pon a prueba tu memoria y agilidad mental con este fascinante juego de emparejamiento!</p>
+                    </div>
+                    <div class="servicio-ind">
+                        <img src="{{ url_for('static', filename='img/SopLetras.jpeg') }}" alt="">
+                        <h3>Sopa de letras</h3>
+                        <p>Si te encantan los desafíos visuales y las palabras, este juego es ideal para ti.</p>
+                    </div>
+                </div>
+
+
+                <div class="servicio-cont">
+                    <div class="servicio-ind">
+                        <img src="{{ url_for('static', filename='img/ordena.jpeg') }}" alt="">
+                        <h3>Ordena la palabras</h3>
+                        <p>Desata tu creatividad y agudiza tu capacidad para formar palabras en este fascinante juego de ordenar letras.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <button id="scrollBtn" onclick="scrollToTop()" title="Ir arriba">&uarr;</button>
+
+    </main>
+    <footer>
+        <div class="contenedor-footer">
+            <div class="content-foo">
+                <h4>Phone</h4>
+                <p>8296312</p>
+            </div>
+            <div class="content-foo">
+                <h4>Email</h4>
+                <p>8296312</p>
+            </div>
+            <div class="content-foo">
+                <h4>Location</h4>
+                <p>8296312</p>
+            </div>
+        </div>
+        <h2 class="titulo-final">&copy; UETS| Progrmamos con el corazón</h2>
+    </footer>
+
+    <script>
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > window.innerHeight / 2 || document.documentElement.scrollTop > window.innerHeight / 2) {
+                document.getElementById("scrollBtn").style.display = "block";
+            } else {
+                document.getElementById("scrollBtn").style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            document.body.scrollTop = 0; // Para Safari
+            document.documentElement.scrollTop = 0; // Para Chrome, Firefox, IE y Opera
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorcado</title>
+    <link href="http://fonts.cdnfonts.com/css/sf-pixelate" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Ahorcado.css') }}" >
+    <script type="text/javascript" src="{{ url_for('static', filename='js/Ahpalabras.js') }}" defer></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/Ahscript.js') }}" defer></script>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="acercade">Acerca de nosotros</a>
+            <a href="aprende">Aprende</a>
+            <a href="juegos">Juegos</a>
+        </nav>
+    </header>
+    
+
+    <h1 style="color: aliceblue;">Ahorcado Pixel</h1>
+    <div>
+        <canvas id="canvas"></canvas>
+        <div id="usedLetters"></div>
+    </div>
+
+    <!-- Agrega las imágenes de las letras aquí -->
+    <table id="letterTable">
+    <tr>
+        <td><img src="{{ url_for('static', filename='imgsSenas/A.png') }}" id="letterA" class="letter-image" alt="A"></td>
+        <td><img src="{{ url_for('static', filename='imgsSenas/B.png') }}" id="letterB" class="letter-image" alt="B"></td>
+        <td> <img src="{{ url_for('static', filename='imgsSenas/C.png') }}" id="letterC" class="letter-image" alt="C"></td>
+        <td> <img src="{{ url_for('static', filename='imgsSenas/D.png') }}" id="letterD" class="letter-image" alt="D"></td>
+        <td><img src="{{ url_for('static', filename='imgsSenas/E.png') }}" id="letterE" class="letter-image" alt="E"></td>
+        <td> <img src="{{ url_for('static', filename='imgsSenas/F.png') }}" id="letterF" class="letter-image" alt="F"></td>
+        <td> <img src="{{ url_for('static', filename='imgsSenas/G.png') }}" id="letterG" class="letter-image" alt="G"></td>
+        <td> <img src="{{ url_for('static', filename='imgsSenas/H.png') }}" id="letterH" class="letter-image" alt="H"></td>
+    </tr>
+ <tr>
+     
+     <td> <img src="{{ url_for('static', filename='imgsSenas/I.png') }}" id="letterI" class="letter-image" alt="I"></td>
+     <td> <img src="{{ url_for('static', filename='imgsSenas/J.png') }}" id="letterJ" class="letter-image" alt="J"></td>
+     <td>  <img src="{{ url_for('static', filename='imgsSenas/K.png') }}" id="letterK" class="letter-image" alt="K"></td>
+     <td> <img src="{{ url_for('static', filename='imgsSenas/L.png') }}" id="letterL" class="letter-image" alt="L"></td>
+       <td> <img src="{{ url_for('static', filename='imgsSenas/M.png') }}" id="letterM" class="letter-image" alt="M"></td>
+     <td> <img src="{{ url_for('static', filename='imgsSenas/N.png') }}" id="letterN" class="letter-image" alt="N"></td>
+    <td> <img src="{{ url_for('static', filename='imgsSenas/O.png') }}" id="letterO" class="letter-image" alt="O"></td>
+    <td>  <img src="{{ url_for('static', filename='imgsSenas/P.png') }}" id="letterP" class="letter-image" alt="P"></td>
+</tr>
+<tr>
+    <td> <img src="{{ url_for('static', filename='imgsSenas/Q.png') }}" id="letterQ" class="letter-image" alt="Q"></td>
+    <td><img src="{{ url_for('static', filename='imgsSenas/R.png') }}" id="letterR" class="letter-image" alt="R"></td>
+ <td> <img src="{{ url_for('static', filename='imgsSenas/S.png') }}" id="letterS" class="letter-image" alt="S"></td>
+<td> <img src="{{ url_for('static', filename='imgsSenas/T.png') }}" id="letterT" class="letter-image" alt="T"></td>
+<td> <img src="{{ url_for('static', filename='imgsSenas/U.png') }}" id="letterU" class="letter-image" alt="U"></td>
+ <td> <img src="{{ url_for('static', filename='imgsSenas/V.png') }}" id="letterV" class="letter-image" alt="V"></td>
+  <td> <img src="{{ url_for('static', filename='imgsSenas/W.png') }}" id="letterW" class="letter-image" alt="W"></td>
+  <td> <img src="{{ url_for('static', filename='imgsSenas/X.png') }}" id="letterX" class="letter-image" alt="X"></td>
+</tr>
+<tr>
+    <td> <img src="{{ url_for('static', filename='imgsSenas/Y.png') }}" id="letterY" class="letter-image" alt="Y"></td>
+    <td> <img src="{{ url_for('static', filename='imgsSenas/Z.png') }}" id="letterZ" class="letter-image" alt="Z"></td>
+</tr>
+
+
+</table>
+
+
+    <!-- Repite para otras letras... -->
+
+    <div id="wordContainer"></div>
+<button id="startButton">START</button>
+<div id="scoreSection">
+    <p>Partidas: <span id="scoreCounter">0</span></p>
+</div>
+
+
+<button id="newButton">Nuevo</button>
+
+<br>
+<br>
+<br>
+
+</body>
+</html>
