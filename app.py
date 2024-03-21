@@ -13,7 +13,7 @@ classifier = None
 def generate_frames():
     global cap
     if (cap == None):
-        cap = cv2.VideoCapture(-1)
+        cap = cv2.VideoCapture(0)
     
     global detector
     if (detector == None):
