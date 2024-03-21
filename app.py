@@ -5,7 +5,7 @@ from cvzone.ClassificationModule import Classifier
 import numpy as np
 import math
 
-app = Flask(__name__)
+application = Flask(__name__)
 cap = None
 detector = None
 classifier = None
@@ -75,73 +75,73 @@ def generate_frames():
             yield (b'--frame\r\n'
                     b'Content-Type: image/jpeg\r\n\r\n' + imgOutput + b'\r\n')
 
-@app.route('/')
+@application.route('/')
 def index():
     global cap
     if (cap != None):
         cap = None
     return render_template('index.html')
 
-@app.route('/acercade')
+@application.route('/acercade')
 def acercade():
     global cap
     if (cap != None):
         cap = None
     return render_template('AcercDnos.html')
 
-@app.route('/aprende')
+@application.route('/aprende')
 def aprende():
     global cap
     if (cap != None):
         cap = None
     return render_template('Aprende.html')
 
-@app.route('/juegos')
+@application.route('/juegos')
 def juegos():
     global cap
     if (cap != None):
         cap = None
     return render_template('ExplicacionJuegos.html')
 
-@app.route('/juegos/ahorcado')
+@application.route('/juegos/ahorcado')
 def juegoahorcado():
     global cap
     if (cap != None):
         cap = None
     return render_template('Ahorcado.html')
 
-@app.route('/juegos/memorama')
+@application.route('/juegos/memorama')
 def juegomemorama():
     global cap
     if (cap != None):
         cap = None
     return render_template('Memorama.html')
 
-@app.route('/juegos/memorama/felicidades')
+@application.route('/juegos/memorama/felicidades')
 def juegomemoramafelicidades():
     global cap
     if (cap != None):
         cap = None
     return render_template('MemorFelicita.html')
 
-@app.route('/juegos/sopaletras')
+@application.route('/juegos/sopaletras')
 def juegosopaletras():
     global cap
     if (cap != None):
         cap = None
     return render_template('SopLetr.html')
 
-@app.route('/juegos/ordenapalabras')
+@application.route('/juegos/ordenapalabras')
 def juegoordenapalabras():
     global cap
     if (cap != None):
         cap = None
     return render_template('OrdenarLetr.html')
 
-@app.route('/video_feed')
+@application.route('/video_feed')
 def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    application.run(debug=True)
     
