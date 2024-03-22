@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(function(stream) {
                 video.srcObject = stream;
                 video.play();
-                //captureAndSend()
+                setInterval(captureAndSend, 1000); // Iniciar la captura y envío de imágenes
             })
             .catch(function(err) {
                 console.error('Error accessing webcam: ', err);
@@ -18,27 +18,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function captureAndSend() {
         const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
-        const ctx = canvas.getContext('2d');
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         const imageData = canvas.toDataURL('image/jpeg');
 
         socket.emit('image', imageData);
     };
 
-    setInterval(captureAndSend, 500);
-
-    
-
     socket.on('frame', function(base64) {
         console.log('base64',base64)
-        if (base64 !== null){
+        if (base64) { // Verificar si el base64 no es nulo ni indefinido
             console.log('base')
             const imgSocket = document.getElementById('imgsocket')
-            imgSocket.src = 'data:image/jpeg;base64,'+base64
+            imgSocket.src = 'data:image/jpeg;base64,' + base64
         }
-        
-    })
-
+    });
 });

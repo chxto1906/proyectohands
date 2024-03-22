@@ -252,7 +252,8 @@ def handle_image(string_base64):
             f.write(image_data)  # Escribe los datos binarios directamente
         
         frame_generator = generate_frames_img()
-        socketio.emit('frame', frame_generator) 
+        if frame_generator is not None:
+            socketio.emit('frame', frame_generator) 
     except Exception as e:
         print("Error:", e)
 
