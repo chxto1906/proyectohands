@@ -9,12 +9,12 @@ from PIL import Image
 from io import BytesIO
 from flask_socketio import SocketIO, emit
 
-application = Flask(__name__)
+app = Flask(__name__)
 cap = None
 detector = None
 classifier = None
 
-socketio = SocketIO(application)
+socketio = SocketIO(app)
 
 def generate_frames():
     global cap
@@ -174,70 +174,70 @@ def convert_frames_to_base64(generator):
     return base64_frames
 
 
-@application.route('/')
+@app.route('/')
 def index():
     global cap
     if (cap != None):
         cap = None
     return render_template('index.html')
 
-@application.route('/acercade')
+@app.route('/acercade')
 def acercade():
     global cap
     if (cap != None):
         cap = None
     return render_template('AcercDnos.html')
 
-@application.route('/aprende')
+@app.route('/aprende')
 def aprende():
     global cap
     if (cap != None):
         cap = None
     return render_template('Aprende.html')
 
-@application.route('/juegos')
+@app.route('/juegos')
 def juegos():
     global cap
     if (cap != None):
         cap = None
     return render_template('ExplicacionJuegos.html')
 
-@application.route('/juegos/ahorcado')
+@app.route('/juegos/ahorcado')
 def juegoahorcado():
     global cap
     if (cap != None):
         cap = None
     return render_template('Ahorcado.html')
 
-@application.route('/juegos/memorama')
+@app.route('/juegos/memorama')
 def juegomemorama():
     global cap
     if (cap != None):
         cap = None
     return render_template('Memorama.html')
 
-@application.route('/juegos/memorama/felicidades')
+@app.route('/juegos/memorama/felicidades')
 def juegomemoramafelicidades():
     global cap
     if (cap != None):
         cap = None
     return render_template('MemorFelicita.html')
 
-@application.route('/juegos/sopaletras')
+@app.route('/juegos/sopaletras')
 def juegosopaletras():
     global cap
     if (cap != None):
         cap = None
     return render_template('SopLetr.html')
 
-@application.route('/juegos/ordenapalabras')
+@app.route('/juegos/ordenapalabras')
 def juegoordenapalabras():
     global cap
     if (cap != None):
         cap = None
     return render_template('OrdenarLetr.html')
 
-@application.route('/video_feed')
+@app.route('/video_feed')
 def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
@@ -257,4 +257,4 @@ def handle_image(string_base64):
         print("Error:", e)
 
 if __name__ == "__main__":
-    application.run(debug=True)
+    app.run(debug=True)
