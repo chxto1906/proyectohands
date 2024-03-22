@@ -4,11 +4,17 @@ from cvzone.HandTrackingModule import HandDetector
 from cvzone.ClassificationModule import Classifier
 import numpy as np
 import math
+import base64
+from PIL import Image
+from io import BytesIO
+from flask_socketio import SocketIO, emit
 
 application = Flask(__name__)
 cap = None
 detector = None
 classifier = None
+
+socketio = SocketIO(application)
 
 def generate_frames():
     global cap
@@ -29,6 +35,7 @@ def generate_frames():
     while True:
         success, img = cap.read()
         imgOutput = img.copy()
+        print('imgOutput####',type(imgOutput))
         hands, img = detector.findHands(img)
         if hands:
             hand = hands[0]
@@ -74,6 +81,98 @@ def generate_frames():
             imgOutput = buffer.tobytes()
             yield (b'--frame\r\n'
                     b'Content-Type: image/jpeg\r\n\r\n' + imgOutput + b'\r\n')
+
+def generate_frames_img():
+    global cap
+    try:
+        cap = cv2.VideoCapture('imagen.jpg')
+    except Exception as e:
+        print('eeeeee',e)
+    
+    global detector
+    detector = HandDetector(maxHands=1)
+        
+    global classifier
+    if (classifier is None):
+        classifier = Classifier("Model/keras_model.h5", "Model/labels.txt")
+
+    offset = 20
+    imgSize = 300
+    labels = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+
+    success, img = cap.read()
+    if (img is not None):
+        imgOutput = img.copy()
+        hands, img = detector.findHands(img)
+        if hands:
+            hand = hands[0]
+            x, y, w, h = hand['bbox']
+
+            imgWhite = np.ones((imgSize, imgSize, 3), np.uint8) * 255
+            imgCrop = img[y - offset:y + h + offset, x - offset:x + w + offset]
+            
+            if imgCrop is not None:
+                if imgCrop.size != 0:
+                    aspectRatio = h / w
+                else:
+                    aspectRatio = 0
+
+                imgCropShape = imgCrop.shape
+
+                if aspectRatio > 1:
+                    k = imgSize / h
+                    wCal = math.ceil(k * w)
+                    if imgCrop.size != 0:
+                        imgResize = cv2.resize(imgCrop, (wCal, imgSize))
+                        imgResizeShape = imgResize.shape
+                        wGap = math.ceil((imgSize - wCal) / 2)
+                        imgWhite[:, wGap:wCal + wGap] = imgResize
+                        prediction, index = classifier.getPrediction(imgWhite, draw=False)
+
+                else:
+                    k = imgSize / w
+                    hCal = math.ceil(k * h)
+                    if imgCrop.size != 0:
+                        imgResize = cv2.resize(imgCrop, (imgSize, hCal))
+                        imgResizeShape = imgResize.shape
+                        hGap = math.ceil((imgSize - hCal) / 2)
+                        imgWhite[hGap:hCal + hGap, :] = imgResize
+                        prediction, index = classifier.getPrediction(imgWhite, draw=False)
+
+                cv2.rectangle(imgOutput, (x - offset, y - offset-50),
+                            (x - offset+90, y - offset-50+50), (255, 0, 255), cv2.FILLED)
+                cv2.putText(imgOutput, labels[index], (x, y -26), cv2.FONT_HERSHEY_COMPLEX, 1.7, (255, 255, 255), 2)
+                cv2.rectangle(imgOutput, (x-offset, y-offset),
+                            (x + w+offset, y + h+offset), (255, 0, 255), 4)
+
+                ret, buffer = cv2.imencode('.jpg', imgOutput)
+                imgOutput = buffer.tobytes()
+                img_base64 = base64.b64encode(imgOutput).decode('utf-8')
+                return img_base64
+                #yield (b'--frame\r\n'
+                #        b'Content-Type: image/jpeg\r\n\r\n' + imgOutput + b'\r\n')
+        else:
+            ret, buffer = cv2.imencode('.jpg', imgOutput)
+            imgOutput = buffer.tobytes()
+            img_base64 = base64.b64encode(imgOutput).decode('utf-8')
+            return img_base64
+def convert_frames_to_base64(generator):
+    base64_frames = []
+
+    # Itera sobre el generador y convierte cada imagen en Base64
+    for frame in generator:
+        # Aquí asumo que 'frame' es una imagen en formato numpy array
+        # Convierte la imagen a formato de bytes
+        _, buffer = cv2.imencode('.jpg', frame)
+        
+        # Convierte la imagen a una cadena Base64
+        base64_image = base64.b64encode(buffer).decode('utf-8')
+        
+        # Agrega la imagen Base64 a la lista
+        base64_frames.append(base64_image)
+
+    return base64_frames
+
 
 @application.route('/')
 def index():
@@ -141,6 +240,21 @@ def juegoordenapalabras():
 @application.route('/video_feed')
 def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@socketio.on('image')
+def handle_image(string_base64):
+    try:
+        # Elimina el encabezado del tipo de imagen antes de decodificar
+        encoded_data = string_base64.split(',')[1]
+        image_data = base64.b64decode(encoded_data)
+        
+        with open("imagen.jpg", "wb") as f:  # Abre el archivo en modo binario
+            f.write(image_data)  # Escribe los datos binarios directamente
+        
+        frame_generator = generate_frames_img()
+        socketio.emit('frame', frame_generator) 
+    except Exception as e:
+        print("Error:", e)
 
 if __name__ == "__main__":
     application.run(debug=True)
