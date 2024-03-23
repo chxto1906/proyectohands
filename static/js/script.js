@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+
     const video = document.getElementById('videoF');
     const socket = io();
 
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(function(stream) {
                 video.srcObject = stream;
                 video.play();
-                setInterval(captureAndSend, 1000); // Iniciar la captura y envío de imágenes
+                //setInterval(captureAndSend, 1000); // Iniciar la captura y envío de imágenes
             })
             .catch(function(err) {
                 console.error('Error accessing webcam: ', err);
@@ -27,6 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
         socket.emit('image', imageData);
     };
 
+    function enviar() {
+        console.log('enviar')
+        captureAndSend()
+    }
+
     socket.on('frame', function(base64) {
         console.log('base64',base64)
         if (base64) { // Verificar si el base64 no es nulo ni indefinido
@@ -35,4 +40,3 @@ document.addEventListener('DOMContentLoaded', () => {
             imgSocket.src = 'data:image/jpeg;base64,' + base64
         }
     });
-});

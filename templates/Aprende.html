@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <style>
         #imgsocket {
             display: block;
@@ -196,6 +195,7 @@
          <!--<img id="videoFeed" src="{{ url_for('video_feed') }}" alt="Cargando..." /> -->
          <video id="videoF" autoplay style="display: none;"></video>
          <img id="imgsocket" src="" alt="">
+         <button onclick="enviar()">Enviar</button>
     </main>    
     <footer>
         <div class="contenedor-footer">
@@ -214,6 +214,7 @@
         </div>
         <h2 class="titulo-final">&copy; UETS| Progrmamos con el corazón</h2>
     </footer>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 
 </html>
