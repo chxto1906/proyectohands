@@ -1,3 +1,5 @@
+
+tensorflow==2.15.0
 mediapipe==0.9.2.1
 gunicorn==21.2.0
 cvzone==1.6.1
