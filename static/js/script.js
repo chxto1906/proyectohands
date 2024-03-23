@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.height = video.videoHeight;
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         const imageData = canvas.toDataURL('image/jpeg');
-
+        console.log('emit', imageData)
         socket.emit('image', imageData);
     };
 

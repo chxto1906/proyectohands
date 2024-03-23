@@ -244,6 +244,7 @@ def video_feed():
 @socketio.on('image')
 def handle_image(string_base64):
     try:
+        print("Imagen recibida..")
         # Elimina el encabezado del tipo de imagen antes de decodificar
         encoded_data = string_base64.split(',')[1]
         image_data = base64.b64decode(encoded_data)
