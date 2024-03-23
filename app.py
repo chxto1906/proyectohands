@@ -170,14 +170,12 @@ def juegoordenapalabras():
 @socketio.on('image')
 def handle_image(string_base64):
     try:
-        print("Imagen recibida..")
         encoded_data = string_base64.split(',')[1]
         image_data = base64.b64decode(encoded_data)
         with open("imagen.jpg", "wb") as f:
             f.write(image_data)
         frame_generator = generate_frames_img()
         if frame_generator is not None:
-            print('Enviando fotogramas...')
             socketio.emit('frame', frame_generator)
     except Exception as e:
         print("Error:", e)
