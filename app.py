@@ -16,7 +16,7 @@ CAP = None
 DETECTOR = None
 CLASSIFIER = None
 
-socketio = SocketIO(app, cors_allowed_origins='*')
+socketio = SocketIO(app)
 
 def generate_frames_img():
     """
