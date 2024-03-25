@@ -7,7 +7,7 @@
             .then(function(stream) {
                 video.srcObject = stream;
                 video.play();
-                setInterval(captureAndSend, 1500); // Iniciar la captura y envío de imágenes
+                //setInterval(captureAndSend, 1500); // Iniciar la captura y envío de imágenes
             })
             .catch(function(err) {
                 console.error('Error accessing webcam: ', err);
