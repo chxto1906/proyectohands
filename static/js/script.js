@@ -17,13 +17,14 @@
     function captureAndSend() {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
-        const scaleFactor = 0.5; // Factor de escala para reducir las dimensiones de la imagen
+        const scaleFactor = 0.4; // Factor de escala para reducir las dimensiones de la imagen
         const targetWidth = video.videoWidth * scaleFactor;
         const targetHeight = video.videoHeight * scaleFactor;
         canvas.width = targetWidth;
         canvas.height = targetHeight;
         ctx.drawImage(video, 0, 0, targetWidth, targetHeight);
-        const imageData = canvas.toDataURL('image/jpeg', 0.8); // Reducir calidad al 80%
+        const imageData = canvas.toDataURL('image/jpeg', 0.6); // Reducir calidad al 80%
+        console.log('Enviando imagen al servidor...', imageData);
         socket.emit('image', imageData);
     };
 
