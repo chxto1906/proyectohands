@@ -17,7 +17,7 @@ CAP = None
 DETECTOR = None
 CLASSIFIER = None
 
-socketio = SocketIO(app)
+socketio = SocketIO(app, async_mode="eventlet")
 
 def generate_frames_img():
     """
@@ -176,6 +176,7 @@ def handle_image(string_base64):
             f.write(image_data)
         frame_generator = generate_frames_img()
         if frame_generator is not None:
+            print('Enviando fotogramas...')
             socketio.emit('frame', frame_generator)
     except Exception as e:
         print("Error:", e)
