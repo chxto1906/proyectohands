@@ -1,8 +1,6 @@
 """
 Este es un ejemplo de una aplicación Flask que utiliza OpenCV y Socket.IO.
 """
-import eventlet
-eventlet.monkey_patch()
 from flask import Flask, render_template
 import cv2
 from cvzone.HandTrackingModule import HandDetector
