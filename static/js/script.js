@@ -7,7 +7,7 @@
             .then(function(stream) {
                 video.srcObject = stream;
                 video.play();
-                //setInterval(captureAndSend, 1500); // Iniciar la captura y envío de imágenes
+                setInterval(captureAndSend, 500); // Iniciar la captura y envío de imágenes
             })
             .catch(function(err) {
                 console.error('Error accessing webcam: ', err);
@@ -24,7 +24,6 @@
         canvas.height = targetHeight;
         ctx.drawImage(video, 0, 0, targetWidth, targetHeight);
         const imageData = canvas.toDataURL('image/jpeg', 0.6); // Reducir calidad al 80%
-        console.log('Enviando imagen al servidor...', imageData);
         socket.emit('image', imageData);
     };
 
