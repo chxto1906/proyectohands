@@ -17,7 +17,7 @@ CAP = None
 DETECTOR = None
 CLASSIFIER = None
 
-socketio = SocketIO(app, async_mode="eventlet")
+socketio = SocketIO(app)
 
 def generate_frames_img():
     """
