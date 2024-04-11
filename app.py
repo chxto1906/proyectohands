@@ -163,6 +163,13 @@ def juegoordenapalabras():
         CAP = None
     return render_template('OrdenarLetr.html')
 
+@app.route('/contactanos')
+def contactanos():
+    global CAP
+    if CAP != None:
+        CAP = None
+    return render_template('Contactanos.html')
+
 #@app.route('/video_feed')
 #def video_feed():
 #    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')

@@ -15,9 +15,9 @@
     <header>
         <nav>
             <a href="/">Inicio</a>
-            <a href="acercade">Acerca de nosotros</a>
-            <a href="aprende">Aprende</a>
-            <a href="juegos">Juegos</a>
+            <a href="/acercade">Acerca de nosotros</a>
+            <a href="/aprende">Aprende</a>
+            <a href="/juegos">Juegos</a>
         </nav>
     </header>
     
@@ -74,12 +74,16 @@
 
     <div id="wordContainer"></div>
 <button id="startButton">START</button>
-<div id="scoreSection">
-    <p>Partidas: <span id="scoreCounter">0</span></p>
-</div>
 
 
 <button id="newButton">Nuevo</button>
+
+<audio id="correctSound">
+    <source src="static/sounds/FelicidadesAhorc.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="wrongSound">
+    <source src="ruta/al/archivo-de-sonido-incorrecto.mp3" type="audio/mpeg">
+  </audio>  
 
 <br>
 <br>

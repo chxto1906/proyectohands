@@ -29,8 +29,8 @@ header {
     width: 100%;
     height: 600px;
     background: #00B4DB;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #0083B0, #00B4DB), url(../imgs/portada.jpg);;  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, hsla(195, 100%, 35%, 0.608), #00B4DB), url(../imgs/portada.jpg);; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: -webkit-linear-gradient(to right, #0083B0, #00B4DB), url(../imgs/FondoPrincipio2.jpg);;  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, hsla(195, 100%, 35%, 0.608), #00B4DB), url(../imgs/FondoPrincipio2.jpg);; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     background-size: cover;
     background-attachment: fixed;

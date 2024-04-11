@@ -22,7 +22,7 @@ const wordHints = {
     "PERRO": "El mejor amigo del hombre",
     "GATO": "Son tiernos pero arañan",
     "NIEVE": "Es blanca y fria",
-    "ROSA": "Es un nombre femenino y un color",
+    "VIOLETA": "Es un nombre femenino y un color",
     "SOL": "Nos da luz y calor",
     "LUNA": "Sale cuando el sol se esconde",
     "GLOBO": "Se usa en fiestas y cumpleaños",
@@ -35,6 +35,10 @@ let selectedWordHint;
 let usedLetters;
 let mistakes;
 let hits;
+
+// Añade las referencias a los elementos de audio
+const correctSound = document.getElementById('correctSound');
+const wrongSound = document.getElementById('wrongSound');
 
 const addLetter = letter => {
     const letterElement = document.createElement('span');
@@ -50,22 +54,29 @@ const addBodyPart = bodyPart => {
 const wrongLetter = () => {
     addBodyPart(bodyParts[mistakes]);
     mistakes++;
-    if (mistakes === bodyParts.length) endGame();
+    if (mistakes === bodyParts.length) {
+        // Reproducir sonido de respuesta incorrecta
+        wrongSound.play();
+        endGame();
+    }
 }
 
+
 const endGame = () => {
-    // Incrementa el marcador de la puntuación
-    score++;
-    // Actualiza el marcador en el HTML
-    updateScoreCounter();
     // Elimina eventos de clic en las imágenes
     const letterImages = document.querySelectorAll('.letter-image');
     letterImages.forEach(image => {
         image.removeEventListener('click', imageClickEvent);
     });
 
-    startButton.style.display = 'block';
-}
+    // Mostrar mensaje "Pasa a la siguiente" si se completa la palabra correctamente
+    if (hits === selectedWord.length) {
+        // Reproducir sonido de respuesta correcta
+        correctSound.play();
+        showNextMessage();
+    }
+    
+};
 
 const correctLetter = letter => {
     const { children } = wordContainer;
@@ -75,8 +86,12 @@ const correctLetter = letter => {
             hits++;
         }
     }
-    if (hits === selectedWord.length) endGame();
-}
+    if (hits === selectedWord.length) {
+        // Reproducir sonido de respuesta correcta
+        correctSound.play();
+        endGame();
+    }
+};
 
 const letterInput = letter => {
     if (selectedWord.includes(letter)) {
@@ -137,6 +152,13 @@ const pistaFunction = (word) => {
     }
 };
 
+const showNextMessage = () => {
+    const messageElement = document.createElement('p');
+    messageElement.textContent = 'Pasa a la siguiente';
+    wordContainer.appendChild(messageElement);
+};
+
+
 const startGame = () => {
     usedLetters = [];
     mistakes = 0;
@@ -164,6 +186,8 @@ const startGame = () => {
     pistaFunction(selectedWord.join(''));
 };
 
+
+
 const restartGame = () => {
     // Reinicia el juego
     startGame();
@@ -175,19 +199,6 @@ const restartGame = () => {
         bestScore = score;
         updateBestScoreCounter();
     }
-};
-
-let score = 0;
-let bestScore = 0;
-const scoreCounter = document.getElementById('scoreCounter');
-const bestScoreCounter = document.getElementById('bestScoreCounter');
-
-const updateScoreCounter = () => {
-    scoreCounter.textContent = score;
-};
-
-const updateBestScoreCounter = () => {
-    bestScoreCounter.textContent = bestScore;
 };
 
 // Agrega el evento click al botón "Nuevo"

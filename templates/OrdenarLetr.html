@@ -62,8 +62,8 @@
         }
 
         .letter img {
-            width: 40px;
-            height: 40px;
+            width: 80px;
+            height: 80px;
             object-fit: contain;
         }
 
@@ -110,9 +110,9 @@
     <header>
         <nav>
             <a href="/">Inicio</a>
-            <a href="acercade">Acerca de nosotros</a>
-            <a href="aprende">Aprende</a>
-            <a href="#">Juegos</a>
+            <a href="/acercade">Acerca de nosotros</a>
+            <a href="/aprende">Aprende</a>
+            <a href="/juegos">Juegos</a>
         </nav>
     </header>
 
@@ -126,7 +126,18 @@
 
     <button class="boton-especial"  onclick="reiniciarJuego()">Nuevo</button>
 
+    
+    <!--
+<audio id="sonido_H" src="{{ url_for('static', filename='sounds/sonido_h.mp3') }}"></audio>
+<audio id="sonido_O" src="{{ url_for('static', filename='sounds/sonido_o.mp3') }}"></audio>
+<audio id="sonido_L" src="{{ url_for('static', filename='sounds/sonido_l.mp3') }}"></audio>
+<audio id="sonido_A" src="{{ url_for('static', filename='sounds/sonido_a.mp3') }}"></audio>
+-->
+
+    
+
     <script>
+
 const palabras = ["HOLA", "HOGAR", "LENGUAJE", "SONREIR", "JUGAR", "COMER", "SALUDAR", "AMIGOS", "DIVERTIRSE", "ALIMENTAR", "FELICIDAD", "APRENDER", "DISFRUTAR", "ENTRETENER"];
         let palabrasRestantes = [...palabras];
 
@@ -196,6 +207,7 @@ const palabras = ["HOLA", "HOGAR", "LENGUAJE", "SONREIR", "JUGAR", "COMER", "SAL
             attemptsContainer.textContent = `Intentos restantes: ${intentos}`;
         }
 
+        
         function seleccionarLetra(letra) {
             if (letra === palabraActual[0]) {
                 palabraActual = palabraActual.slice(1);
@@ -220,6 +232,7 @@ const palabras = ["HOLA", "HOGAR", "LENGUAJE", "SONREIR", "JUGAR", "COMER", "SAL
             mostrarPalabra();
             mostrarIntentos();
         }
+        
 
         function mostrarFelicitaciones() {
             reiniciarJuego();

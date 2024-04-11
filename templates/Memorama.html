@@ -13,9 +13,9 @@
     <header>
         <nav>
             <a href="/">Inicio</a>
-            <a href="acercade">Acerca de nosotros</a>
-            <a href="aprende">Aprende</a>
-            <a href="juegos">Juegos</a>
+            <a href="/acercade">Acerca de nosotros</a>
+            <a href="/aprende">Aprende</a>
+            <a href="/juegos">Juegos</a>
         </nav>
     </header>
 
@@ -123,20 +123,24 @@
             background-color: rgb(181, 226, 194);
         }
 
-        #mensaje-felicitaciones {
-            display: none;
-            color: white;
-            font-size: 24px;
-            margin-top: 20px;
-        }
+        .mensaje-felicitaciones {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Cambia la tipografía */
+        color: rgb(255, 255, 255); /* Cambia el color del texto */
+        font-size: 25pt;
+       }
 
-        #tablero {
+.letra-encontrada {
+    font-weight: bold; /* Hace que la letra encontrada sea negrita */
+}
+
+#tablero {
     display: flex;
     flex-wrap: wrap;
     justify-content: center; /* Centrar horizontalmente */
     align-items: center; /* Centrar verticalmente */
     gap: 10px; /* Espacio entre las tarjetas */
     margin-top: 20px; /* Ajuste del margen superior */
+    margin-bottom: 20px;
 }
 
 
@@ -244,8 +248,8 @@
     let match = letra.match(/(\w+)\.png/);
     if (match) {
         let letraExtraida = match[1];
-        mensaje.innerText = `Felicidades has encontrado la letra ${letraExtraida}`;
-        mensaje.style.textAlign = 'left'; // Alineación a la izquierda
+        mensaje.innerHTML = `Felicidades has encontrado la letra <span class="letra-encontrada">${letraExtraida}</span>`;
+        mensaje.classList.add('mensaje-felicitaciones');
     } else {
         mensaje.innerText = `No se pudo determinar la letra`;
     }
@@ -253,7 +257,7 @@
     // Ocultar el mensaje después de 3 segundos
     setTimeout(() => {
         mensaje.style.display = 'none';
-    }, 2000);
+    }, 3000);
 }
 
 
