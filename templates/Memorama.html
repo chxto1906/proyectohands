@@ -112,11 +112,11 @@
 
         .nuevo-juego {
             cursor: pointer;
-            background: linear-gradient(rgb(243, 142, 142), rgba(13, 226, 70, 0.233));
+            background: linear-gradient(rgb(243, 142, 142), rgba(80, 55, 164, 0.71));
             padding: 20px;
             border-radius: 50px;
             font-size: 130%;
-            margin-top: 5%;
+            margin-top: 1%;
         }
 
         .acertada .trasera {
@@ -268,7 +268,7 @@
             // Verifica si todas las tarjetas tienen la clase 'acertada'
             if (Array.from(todasLasTarjetas).every(tarjeta => tarjeta.classList.contains('acertada'))) {
                 // Todas las tarjetas son correctas, redirige a una página de felicitaciones con efectos
-                window.location.href = '/juegos/memorama/felicitaciones';
+                window.location.href = "/juegos/memorama/felicidades";
             }
         }
 

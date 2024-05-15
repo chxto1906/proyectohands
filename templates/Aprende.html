@@ -18,11 +18,8 @@
             height: 400px !important;
             width: 600px !important;
         }
-    </style>
-</head>
 
-<style>
-    p {
+        p {
         font-size: 20px;
     }
 
@@ -31,7 +28,28 @@
         text-align: center;
     }
 
-</style>
+        #scrollBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #00B4DB;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 100%;
+    transition: background-color 0.3s;
+}
+
+#scrollBtn:hover {
+    background-color: #00B4DB;
+}
+    </style>
+</head>
 
 <body>
     <header>
@@ -195,24 +213,45 @@
          <video id="videoF" autoplay style="display: none;"></video>
          <img id="imgsocket" src="" alt="">
          
+         <button id="scrollBtn" onclick="scrollToTop()" title="Ir arriba">&uarr;</button>
+
+
     </main>    
+    
     <footer>
         <div class="contenedor-footer">
-            <div class="content-foo">           
+            <div class="content-foo">
                 <h4>Phone</h4>
-                <p>8296312</p>
+                <p>099 876 5432</p>
             </div>
             <div class="content-foo">
                 <h4>Email</h4>
-                <p>8296312</p>
+                <p>handtraking.uets@gmail.com</p>
             </div>
             <div class="content-foo">
                 <h4>Location</h4>
-                <p>8296312</p>
+                <p>Técnico Salesiano</p>
             </div>
         </div>
         <h2 class="titulo-final">&copy; UETS| Progrmamos con el corazón</h2>
     </footer>
+    <script>
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > window.innerHeight / 2 || document.documentElement.scrollTop > window.innerHeight / 2) {
+                document.getElementById("scrollBtn").style.display = "block";
+            } else {
+                document.getElementById("scrollBtn").style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            document.body.scrollTop = 0; // Para Safari
+            document.documentElement.scrollTop = 0; // Para Chrome, Firefox, IE y Opera
+        }
+    </script>
+
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 

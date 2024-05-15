@@ -1,6 +1,4 @@
-"""
-Este es un ejemplo de una aplicación Flask que utiliza OpenCV y Socket.IO.
-"""
+
 import eventlet
 eventlet.monkey_patch()
 from flask import Flask, render_template
@@ -45,6 +43,7 @@ def generate_frames_img():
         hands, img = DETECTOR.findHands(img)
         if hands:
             hand = hands[0]
+            
             x, y, w, h = hand['bbox']
             imgWhite = np.ones((imgSize, imgSize, 3), np.uint8) * 255
             imgCrop = img[y - offset:y + h + offset, x - offset:x + w + offset]
@@ -135,6 +134,13 @@ def juegoahorcado():
         CAP = None
     return render_template('Ahorcado.html')
 
+@app.route('/juegos/ahorcado/felicidades')
+def juegoahorcadofelicidades():
+    global CAP
+    if CAP != None:
+        CAP = None
+    return render_template('AhorFelicita.html')
+
 @app.route('/juegos/memorama')
 def juegomemorama():
     global CAP
@@ -156,12 +162,26 @@ def juegosopaletras():
         CAP = None
     return render_template('SopLetr.html')
 
+@app.route('/juegos/sopaletras/felicidades')
+def juegsopletfelicidades():
+    global CAP
+    if CAP != None:
+        CAP = None
+    return render_template('SopLetFelicita.html')
+
 @app.route('/juegos/ordenapalabras')
 def juegoordenapalabras():
     global CAP
     if CAP != None:
         CAP = None
     return render_template('OrdenarLetr.html')
+
+@app.route('/juegos/ordenapalabras/felicidades')
+def juegordenfelicidades():
+    global CAP
+    if CAP != None:
+        CAP = None
+    return render_template('OrdenaFelicita.html')
 
 @app.route('/contactanos')
 def contactanos():

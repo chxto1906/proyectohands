@@ -16,8 +16,8 @@
     }
 
     td {
-      width: 45px;
-      height: 45px;
+      width: 55px;
+      height: 55px;
       border: 2px solid #dad3d3;
       cursor: pointer;
       background-size: contain;
@@ -30,10 +30,10 @@
     }
 
     body {
-    font-family: 'Open Sans', sans-serif;
-    background: #70e1f5;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #728eb8, #70e1f5);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #719dc2, #70e1f5);
+      font-family: 'Open Sans', sans-serif;
+      background: #70e1f5;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to left, #728eb8, #70e1f5);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to left, #719dc2, #70e1f5);
     }
 
     h1 {
@@ -48,293 +48,312 @@
     }
 
     nav{
-    text-align: right;
-    padding: 30px 50px 0 0;
+      text-align: right;
+      padding: 30px 50px 0 0;
     }
 
-     nav > a{
-    color:#fff;
-    font-weight: 300;
-    text-decoration: none;
-    margin-right: 10px;
-     }
+    nav > a{
+      color:#fff;
+      font-weight: 300;
+      text-decoration: none;
+      margin-right: 10px;
+    }
 
-     .contenedor-principal {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 5px; /* Agregamos un espaciado a cada lado */
-  margin-bottom: 20vh;
-}
-
-.contenedor1 {
-  width: 20%; /* Reducimos el ancho del contenedor 1 */
-  height: 40vh; /* Establecemos la altura del contenedor 1 al 80% del tamaño vertical disponible */
-  overflow-y: auto; /* Agregamos un desplazamiento vertical si el contenido excede la altura */
-  background-color: #fff;
-  padding: 20px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  margin-right: 5%;
-}
+    .contenedor-principal {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 5px; /* Agregamos un espaciado a cada lado */
+      margin-bottom: 20vh;
+    }
 
 
-.contenedor {
-  width: 55%; /* Reducimos un poco el ancho del contenedor principal */
-  max-width: 1000px;
-  overflow: hidden;
-  background-color: #fff;
-  padding: 20px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  margin-left: 10%;
-}
+    .contenedor {
+      width: 55%; /* Reducimos un poco el ancho del contenedor principal */
+      max-width: 1000px;
+      overflow: hidden;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      margin-left: 10%;
+    }
 
-.contenedor2 {
-      width: 20%; /* Reducimos el ancho del contenedor 2 */
+    .contenedor1 {
+      width: 20%; /* Reducimos el ancho del contenedor 1 */
+      height: 40vh; /* Establecemos la altura del contenedor 1 al 80% del tamaño vertical disponible */
+      overflow-y: auto; /* Agregamos un desplazamiento vertical si el contenido excede la altura */
       background-color: #fff;
       padding: 20px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
       border-radius: 10px;
       margin-right: 5%;
+    }
+
+    .contenedor2 {
+      width: 20%; /* Reducimos el ancho del contenedor 2 */
+      background-color: #fff;
+      overflow-y: auto; /* Agregamos un desplazamiento vertical si el contenido excede la altura */
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
       text-align: center;
+      width: 20%; /* Reducimos el ancho del contenedor 2 */
+      margin-left: 72%;
+      margin-top: -29%;
     }
 
-
-    
     nav > a:hover{
-    text-decoration: underline;
+      text-decoration: underline;
     }
 
-.boton-especial {
-  padding: 10px 20px;
-  background-color: #5478e3;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-left: 88%;
-  margin-bottom: 3%;
-}
+    .boton-especial {
+      padding: 10px 20px;
+      background-color: #5478e3;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-left: 85%;
+      margin-bottom: 5%;
+      margin-top: 5%;
+    }
 
   </style>
 </head>
 
 <body>
-  <header>
-    <nav>
-            <a href="/">Inicio</a>
-            <a href="/acercade">Acerca de nosotros</a>
-            <a href="/aprende">Aprende</a>
-            <a href="/juegos">Juegos</a>
-    </nav>
+<header>
+  <nav>
+    <a href="/">Inicio</a>
+    <a href="/acercade">Acerca de nosotros</a>
+    <a href="/aprende">Aprende</a>
+    <a href="/juegos">Juegos</a>
+  </nav>
 
-    <h1>Sopa de Letras</h1>
+  <h1>Sopa de Letras</h1>
 
-  </header>
-  
-  <main>
-    <div class="contenedor-principal">
-      <div class="contenedor">
-        <table id="sopaDeLetras"></table>
-        <div id="palabrasSeleccionadas"></div>
-      </div>
-  
-      <div class="contenedor1">
-        <h2>Palabras a encontrar:</h2>
-        <ul> HTML </ul>
-        <ul> CSS </ul>
-        <ul> CASA </ul>
-        <ul> PERRO </ul>
-        <ul> GATO </ul>
-        <ul> AMOR </ul>
-        <ul> FRESA </ul>
-        <ul> NIEVE </ul>
-      </div>
+</header>
+
+<main>
+  <div class="contenedor-principal">
+    <div class="contenedor">
+      <table id="sopaDeLetras"></table>
+      <div id="palabrasSeleccionadas"></div>
     </div>
 
-    <div>
-      <button class="boton-especial" onclick="reiniciarSopaDeLetras()">Reiniciar</button>
+    <div class="contenedor1">
+      <h2>Palabras a encontrar:</h2>
+      <ul> AGUA </ul>
+      <ul> CASA </ul>
+      <ul> AMOR </ul>
+      <ul> FRESA </ul>
+      <ul> HOJA </ul>
+      <ul> ROJO </ul>
+<br>
+<br>
+      <ul>.</ul>
+
     </div>
-    
-    
+  </div>
 
-  </main>
+  <div class="contenedor2">
+    <h2>Palabras encontradas:</h2>
+    <div id="palabrasEncontradas"></div>
+  </div>
 
-  <script>
-    const imagenes = {
-      'A': '{{ url_for("static", filename="imgsSenas/A.png") }}',
-      'B': '{{ url_for("static", filename="imgsSenas/B.png") }}',
-      'C': '{{ url_for("static", filename="imgsSenas/C.png") }}',
-      'D': '{{ url_for("static", filename="imgsSenas/D.png") }}',
-      'E': '{{ url_for("static", filename="imgsSenas/E.png") }}',
-      'F': '{{ url_for("static", filename="imgsSenas/F.png") }}',
-      'G': '{{ url_for("static", filename="imgsSenas/G.png") }}',
-      'H': '{{ url_for("static", filename="imgsSenas/H.png") }}',
-      'I': '{{ url_for("static", filename="imgsSenas/I.png") }}',
-      'J': '{{ url_for("static", filename="imgsSenas/J.png") }}',
-      'K': '{{ url_for("static", filename="imgsSenas/K.png") }}',
-      'L': '{{ url_for("static", filename="imgsSenas/L.png") }}',
-      'M': '{{ url_for("static", filename="imgsSenas/M.png") }}',
-      'N': '{{ url_for("static", filename="imgsSenas/N.png") }}',
-      'O': '{{ url_for("static", filename="imgsSenas/O.png") }}',
-      'P': '{{ url_for("static", filename="imgsSenas/P.png") }}',
-      'Q': '{{ url_for("static", filename="imgsSenas/Q.png") }}',
-      'R': '{{ url_for("static", filename="imgsSenas/R.png") }}',
-      'S': '{{ url_for("static", filename="imgsSenas/S.png") }}',
-      'T': '{{ url_for("static", filename="imgsSenas/T.png") }}',
-      'U': '{{ url_for("static", filename="imgsSenas/U.png") }}',
-      'V': '{{ url_for("static", filename="imgsSenas/V.png") }}',
-      'W': '{{ url_for("static", filename="imgsSenas/W.png") }}',
-      'X': '{{ url_for("static", filename="imgsSenas/X.png") }}',
-      'Y': '{{ url_for("static", filename="imgsSenas/Y.png") }}',
-      'Z': '{{ url_for("static", filename="imgsSenas/Z.png") }}',
-    };
-  
-    const palabras = ['HTML', 'CSS', 'CASA', 'PERRO', 'GATO', 'AMOR', 'FRESA', 'NIEVE'];
-  
-    // Función para generar una letra aleatoria
-    function letraAleatoria() {
-      return 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[Math.floor(Math.random() * 26)];
-    }
-  
-    // Función para agregar una palabra a la sopa de letras
-    function agregarPalabra(palabra) {
-      const direccion = Math.floor(Math.random() * 8); // 0-3: horizontal, 4-7: vertical y diagonal
-  
-      let filaInicial, columnaInicial;
-  
-      if (direccion < 4) { // Horizontal
-        filaInicial = Math.floor(Math.random() * 12);
-        columnaInicial = Math.floor(Math.random() * (12 - palabra.length + 1));
-      } else if (direccion < 8) { // Vertical
-        filaInicial = Math.floor(Math.random() * (12 - palabra.length + 1));
-        columnaInicial = Math.floor(Math.random() * 12);
-      } else if (direccion === 8) { // Diagonal derecha abajo
-        filaInicial = Math.floor(Math.random() * (12 - palabra.length + 1));
-        columnaInicial = Math.floor(Math.random() * (12 - palabra.length + 1));
-      } else { // Diagonal izquierda abajo
-        filaInicial = Math.floor(Math.random() * (12 - palabra.length + 1));
-        columnaInicial = Math.floor(Math.random() * (12 - palabra.length + 1)) + (palabra.length - 1);
-      }
-  
-      const letrasPalabra = palabra.split('');
-  
-      for (let i = 0; i < palabra.length; i++) {
-        let fila = filaInicial;
-        let columna = columnaInicial;
-  
-        if (direccion < 4) { // Horizontal
-          columna += i;
-        } else if (direccion < 8) { // Vertical
-          fila += i;
-        } else if (direccion === 8) { // Diagonal derecha abajo
-          fila += i;
-          columna += i;
-        } else { // Diagonal izquierda abajo
-          fila += i;
-          columna -= i;
-        }
-  
-        const celda = document.getElementById(`celda-${fila}-${columna}`);
-        if (celda) {
-          const letra = letrasPalabra[i].toUpperCase();
-          celda.style.backgroundImage = `url('${imagenes[letra]}')`;
-          celda.dataset.palabra = palabra;  // Asignar la palabra a la celda
-          celda.onclick = function() {
-            seleccionarPalabra(palabra);
-          };
-        }
-      }
-    }
-  
-    // Función para llenar la tabla con imágenes aleatorias y palabras
-    function llenarTabla() {
-      const tabla = document.getElementById('sopaDeLetras');
-      
-      // Eliminar la entrada de localStorage para generar una nueva sopa de letras
-      localStorage.removeItem('sopaDeLetras');
-  
-      for (let i = 0; i < 12; i++) {
-        const fila = tabla.insertRow(i);
-        for (let j = 0; j < 12; j++) {
-          const celda = fila.insertCell(j);
-          celda.id = `celda-${i}-${j}`;
-          celda.style.backgroundImage = `url('${imagenes[letraAleatoria()]}')`;
-        }
-      }
-  
-      palabras.forEach(agregarPalabra);
-  
-      // Guardar la sopa de letras en localStorage
-      localStorage.setItem('sopaDeLetras', tabla.innerHTML);
-    }
-  
-    // Función para seleccionar una palabra
-    function seleccionarPalabra(palabraCompleta) {
-      const celdas = document.querySelectorAll('td');
-      const palabraSeleccionada = palabraCompleta.toUpperCase();
-  
-      // Verificar si todas las letras de la palabra están seleccionadas
-      const letrasSeleccionadas = Array.from(celdas)
-        .filter(celda => celda.dataset.palabra === palabraSeleccionada)
-        .map(celda => celda.style.backgroundImage)
-        .join('');
-  
-      if (letrasSeleccionadas.includes(imagenes[palabraSeleccionada[0]])) {
-        // Desactivar clic después de seleccionar la palabra
-        celdas.forEach(celda => {
-          if (celda.dataset.palabra === palabraSeleccionada) {
-            celda.onclick = null;
-            celda.classList.add('seleccionada');
-          }
-        });
-  
-        // Mostrar la palabra seleccionada en la lista
-        const listaPalabrasSeleccionadas = document.getElementById('palabrasSeleccionadas');
-        const nuevaPalabra = document.createElement('p');
-        nuevaPalabra.textContent = `Palabra seleccionada: ${palabraSeleccionada}`;
-        listaPalabrasSeleccionadas.appendChild(nuevaPalabra);
-      }
+  <div>
+    <button class="boton-especial" onclick="reiniciarSopaDeLetras()">Nuevo Juego</button>
+  </div>
+</main>
+
+<script>
+  const imagenes = {
+    'A': '{{ url_for("static", filename="imgsSenas/A.png") }}',
+    'B': '{{ url_for("static", filename="imgsSenas/B.png") }}',
+    'C': '{{ url_for("static", filename="imgsSenas/C.png") }}',
+    'D': '{{ url_for("static", filename="imgsSenas/D.png") }}',
+    'E': '{{ url_for("static", filename="imgsSenas/E.png") }}',
+    'F': '{{ url_for("static", filename="imgsSenas/F.png") }}',
+    'G': '{{ url_for("static", filename="imgsSenas/G.png") }}',
+    'H': '{{ url_for("static", filename="imgsSenas/H.png") }}',
+    'I': '{{ url_for("static", filename="imgsSenas/I.png") }}',
+    'J': '{{ url_for("static", filename="imgsSenas/J.png") }}',
+    'K': '{{ url_for("static", filename="imgsSenas/K.png") }}',
+    'L': '{{ url_for("static", filename="imgsSenas/L.png") }}',
+    'M': '{{ url_for("static", filename="imgsSenas/M.png") }}',
+    'N': '{{ url_for("static", filename="imgsSenas/N.png") }}',
+    'O': '{{ url_for("static", filename="imgsSenas/O.png") }}',
+    'P': '{{ url_for("static", filename="imgsSenas/P.png") }}',
+    'Q': '{{ url_for("static", filename="imgsSenas/Q.png") }}',
+    'R': '{{ url_for("static", filename="imgsSenas/R.png") }}',
+    'S': '{{ url_for("static", filename="imgsSenas/S.png") }}',
+    'T': '{{ url_for("static", filename="imgsSenas/T.png") }}',
+    'U': '{{ url_for("static", filename="imgsSenas/U.png") }}',
+    'V': '{{ url_for("static", filename="imgsSenas/V.png") }}',
+    'W': '{{ url_for("static", filename="imgsSenas/W.png") }}',
+    'X': '{{ url_for("static", filename="imgsSenas/X.png") }}',
+    'Y': '{{ url_for("static", filename="imgsSenas/Y.png") }}',
+    'Z': '{{ url_for("static", filename="imgsSenas/Z.png") }}',
+  };
+
+  const palabras = ['AGUA', 'CASA', 'AMOR', 'FRESA', 'HOJA', 'ROJO'];
+
+// Variable para registrar si una palabra se ha encontrado
+let palabrasEncontradas = [];
+
+  // Función para generar una letra aleatoria
+  function letraAleatoria() {
+    return 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[Math.floor(Math.random() * 26)];
+  }
+
+// Función para agregar una palabra a la sopa de letras
+function agregarPalabra(palabra) {
+  const direccion = Math.floor(Math.random() * 9); // 0-3: horizontal, 4-7: vertical y diagonal
+
+  let filaInicial, columnaInicial;
+
+  if (direccion < 5) { // Horizontal
+    filaInicial = Math.floor(Math.random() * 10);
+    columnaInicial = Math.floor(Math.random() * (10 - palabra.length + 1));
+  } else if (direccion < 9) { // Vertical
+    filaInicial = Math.floor(Math.random() * (10 - palabra.length + 1));
+    columnaInicial = Math.floor(Math.random() * 10);
+  } else if (direccion === 9) { // Diagonal derecha abajo
+    filaInicial = Math.floor(Math.random() * (10 - palabra.length + 1));
+    columnaInicial = Math.floor(Math.random() * (10 - palabra.length + 1));
+  } else { // Diagonal izquierda abajo
+    filaInicial = Math.floor(Math.random() * (10 - palabra.length + 1));
+    columnaInicial = Math.floor(Math.random() * (10 - palabra.length + 1)) + (palabra.length - 1);
+  }
+
+  const letrasPalabra = palabra.split('');
+  let palabraEncontrada = false; // Variable para registrar si la palabra se ha encontrado
+
+  for (let i = 0; i < palabra.length; i++) {
+    let fila = filaInicial;
+    let columna = columnaInicial;
+
+    if (direccion < 5) { // Horizontal
+      columna += i;
+    } else if (direccion < 9) { // Vertical
+      fila += i;
+    } else if (direccion === 9) { // Diagonal derecha abajo
+      fila += i;
+      columna += i;
+    } else { // Diagonal izquierda abajo
+      fila += i;
+      columna -= i;
     }
 
-    // Función para llenar la lista de palabras predefinidas
-function llenarPalabrasPredefinidas() {
-  const listaPalabras = document.getElementById('palabrasPredefinidas');
+    const celda = document.getElementById(`celda-${fila}-${columna}`);
+    if (celda) {
+      const letra = letrasPalabra[i].toUpperCase();
+      celda.style.backgroundImage = `url('${imagenes[letra]}')`;
+      celda.dataset.palabra = palabra;  // Asignar la palabra a la celda
+      celda.dataset.letra = letra;  // Asignar la letra a la celda
+      celda.onclick = function() {
+        seleccionarLetra(this, palabra);
+      };
+    }
+  }
 
-  palabras.forEach(palabra => {
-    const itemPalabra = document.createElement('li');
-    itemPalabra.textContent = palabra;
-    listaPalabras.appendChild(itemPalabra);
-  });
+  // Verificar si todas las celdas de la palabra ya están seleccionadas
+  const celdasMismaPalabra = document.querySelectorAll(`td[data-palabra='${palabra}']`);
+  const todasSeleccionadas = Array.from(celdasMismaPalabra).every(celda => celda.classList.contains('seleccionada'));
+
+  // Verificar si todas las celdas de la palabra ya están seleccionadas
+  if (todasSeleccionadas && !palabrasEncontradas.includes(palabra)) {
+    const contenedor2 = document.getElementById('palabrasEncontradas');
+    const nuevaPalabra = document.createElement('p');
+    nuevaPalabra.textContent = `Palabra encontrada: ${palabra}`;
+    contenedor2.appendChild(nuevaPalabra);
+    palabrasEncontradas.push(palabra); // Agregar la palabra a la lista de palabras encontradas
+  }
 }
 
-// Llenar la tabla y la lista de palabras predefinidas al cargar la página
-window.onload = function() {
-  llenarTabla();
-  llenarPalabrasPredefinidas();
-};
 
-function limpiarPalabrasSeleccionadas() {
-  const listaPalabrasSeleccionadas = document.getElementById('palabrasSeleccionadas');
-  listaPalabrasSeleccionadas.innerHTML = ''; // Elimina el contenido de la lista
-}
-
-function reiniciarSopaDeLetras() {
-  // Eliminar todas las filas de la tabla
+// Función para llenar la tabla con imágenes aleatorias y palabras
+function llenarTabla() {
   const tabla = document.getElementById('sopaDeLetras');
-  tabla.innerHTML = '';
 
-  // Limpiar las palabras seleccionadas
-  limpiarPalabrasSeleccionadas();
+  // Eliminar la entrada de localStorage para generar una nueva sopa de letras
+  localStorage.removeItem('sopaDeLetras');
 
-  // Volver a llenar la tabla y reiniciar el juego
-  llenarTabla();
+  for (let i = 0; i < 10; i++) {
+    const fila = tabla.insertRow(i);
+    for (let j = 0; j < 10; j++) {
+      const celda = fila.insertCell(j);
+      celda.id = `celda-${i}-${j}`;
+      celda.style.backgroundImage = `url('${imagenes[letraAleatoria()]}')`;
+    }
+  }
+
+  palabras.forEach(agregarPalabra); // Llamar a la función agregarPalabra para agregar las palabras a la sopa de letras
+
+  // Guardar la sopa de letras en localStorage
+  localStorage.setItem('sopaDeLetras', tabla.innerHTML);
 }
-    // Llenar la tabla al cargar la página
-    window.onload = llenarTabla;
-  </script>
+
   
+
+// Función para seleccionar una letra de una palabra
+function seleccionarLetra(celda, palabraCompleta) {
+      const palabraSeleccionada = palabraCompleta.toUpperCase();
+      const letraSeleccionada = celda.dataset.letra;
+
+      celda.classList.add('seleccionada');
+
+      const todasSeleccionadas = Array.from(document.querySelectorAll(`td[data-palabra='${palabraSeleccionada}']`))
+        .every(celda => celda.classList.contains('seleccionada'));
+
+      if (todasSeleccionadas && !palabrasEncontradas.includes(palabraSeleccionada)) {
+        const contenedor2 = document.getElementById('palabrasEncontradas');
+        const nuevaPalabra = document.createElement('p');
+        nuevaPalabra.textContent = `Palabra encontrada: ${palabraSeleccionada}`;
+        contenedor2.appendChild(nuevaPalabra);
+        palabrasEncontradas.push(palabraSeleccionada);
+
+        if (palabrasEncontradas.length === palabras.length) {
+          // Todas las palabras han sido encontradas, redirigir a la siguiente página
+          window.location.href = '/juegos/sopaletras/felicidades';
+        }
+      }
+    }
+
+  // Función para llenar la lista de palabras predefinidas
+  function llenarPalabrasPredefinidas() {
+      const listaPalabras = document.getElementById('palabrasPredefinidas');
+
+      palabras.forEach(palabra => {
+        const itemPalabra = document.createElement('li');
+        itemPalabra.textContent = palabra;
+        listaPalabras.appendChild(itemPalabra);
+      });
+    }
+
+  // Llenar la tabla y la lista de palabras predefinidas al cargar la página
+  window.onload = function() {
+      llenarTabla();
+      llenarPalabrasPredefinidas();
+    };
+
+    function limpiarPalabrasSeleccionadas() {
+      const listaPalabrasSeleccionadas = document.getElementById('palabrasSeleccionadas');
+      listaPalabrasSeleccionadas.innerHTML = ''; // Elimina el contenido de la lista
+    }
+
+    function reiniciarSopaDeLetras() {
+      const tabla = document.getElementById('sopaDeLetras');
+      tabla.innerHTML = '';
+
+      limpiarPalabrasSeleccionadas();
+
+      llenarTabla();
+    }
+</script>
+
 </body>
 
 </html>
+

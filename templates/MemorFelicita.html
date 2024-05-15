@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <title>Felicidades</title>
     <style>
-
        header {
            width: 100%;
            background-size: cover;
-           background-attachment: fixed;
            position: relative;
        }
 
         body {
             margin: 0;
+            background-image: url("{{ url_for('static', filename='imgs/FondoGif5.gif') }}");
+            background-size: cover; 
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -22,20 +22,27 @@
             justify-content: center;
             height: 100vh;
             background-color: rgba(21, 4, 59, 0.911);
-            color: rgb(218, 240, 97);
+            color: rgb(241, 242, 239);
             font-family: 'Arial', sans-serif;
         }
 
         #mensajeFelicidades {
             font-size: 100px;
-            margin-top: 10%;
+            margin-top: 2%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #mensajeFelicidades2 {
+            font-size: 80px;
+            margin-top: 1%;
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
 
         .nuevo-juego {
             cursor: pointer;
-            background: linear-gradient(rgb(243, 142, 142), rgba(13, 226, 70, 0.233));
+            background: linear-gradient(rgb(181, 184, 117), rgba(186, 100, 100, 0.838));
             padding: 20px;
             border-radius: 50px;
             font-size: 130%;
@@ -80,26 +87,29 @@
     <header>
         <nav>
             <a href="/">Inicio</a>
-            <a href="acercade">Acerca de nosotros</a>
-            <a href="aprende">Aprende</a>
-            <a href="#">Juegos</a>
+            <a href="/acercade">Acerca de nosotros</a>
+            <a href="/aprende">Aprende</a>
+            <a href="/juegos">Juegos</a>
         </nav>
     </header>
 
     <h1 id="mensajeFelicidades">¡Felicidades!</h1>
+    <h1 id="mensajeFelicidades2">Has completado el juego</h1>    
 
     <!-- Botón "Nuevo Juego" -->
-    <div class="nuevo-juego" onclick="nuevoJuego()">
+    <div class="nuevo-juego" onclick="nuevoJuego()" style="color: #070614a3;">
         Nuevo Juego
     </div>
 
     <script>
         const mensajeFelicidades = document.getElementById('mensajeFelicidades');
+        const mensajeFelicidades2 = document.getElementById('mensajeFelicidades2');
         const botonNuevoJuego = document.querySelector('.nuevo-juego');
 
         // Función para mostrar la palabra "Felicidades" y el botón con animación de opacidad
         function mostrarFelicidades() {
             mensajeFelicidades.style.opacity = 1;
+            mensajeFelicidades2.style.opacity = 1;
             botonNuevoJuego.style.opacity = 1;
         }
 
@@ -180,5 +190,5 @@
         }
     </script>
 </body>
-
+    
 </html>

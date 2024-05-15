@@ -18,16 +18,11 @@ const bodyParts = [
 
 const wordHints = {
     "LEON": "Ruge y es fuerte",
-    "CABALLO": "Hay de tierra y hay de mar",
-    "PERRO": "El mejor amigo del hombre",
+    "FLOR": "Puede ser de diversos colores y aromas",
+    "LAPIZ": "Se usa para dibujar y escribir",
     "GATO": "Son tiernos pero arañan",
-    "NIEVE": "Es blanca y fria",
+    "LIBRO": "Contiene páginas y se lee",
     "VIOLETA": "Es un nombre femenino y un color",
-    "SOL": "Nos da luz y calor",
-    "LUNA": "Sale cuando el sol se esconde",
-    "GLOBO": "Se usa en fiestas y cumpleaños",
-    "FLOR": "Atrae a las mariposas y abejas",
-    // Agrega más palabras y pistas según lo desees
 };
 
 let selectedWord;
@@ -61,6 +56,30 @@ const wrongLetter = () => {
     }
 }
 
+let lostWordAudio; // Variable global para almacenar el audio
+
+const cargarIconos = () => {
+    // Crear un nuevo elemento de audio y establecer la fuente manualmente
+    lostWordAudio = new Audio('/static/sounds/lostword.mp3');
+}
+
+let findWordAudio; // Variable global para almacenar el audio
+
+const cargarIconos2 = () => {
+    // Crear un nuevo elemento de audio y establecer la fuente manualmente
+    findWordAudio = new Audio('/static/sounds/findword.mp3');
+}
+
+const lostMessage = () => {
+    const messageElement = document.createElement('p');
+    messageElement.textContent = '¡Has perdido! Pulsa Next!';
+    messageElement.style.fontSize = '24px'; // Tamaño de fuente más grande
+    messageElement.style.fontWeight = 'bold'; // Texto en negrita
+    wordContainer.appendChild(messageElement);
+
+    lostWordAudio.play();
+
+};
 
 const endGame = () => {
     // Elimina eventos de clic en las imágenes
@@ -72,11 +91,31 @@ const endGame = () => {
     // Mostrar mensaje "Pasa a la siguiente" si se completa la palabra correctamente
     if (hits === selectedWord.length) {
         // Reproducir sonido de respuesta correcta
-        correctSound.play();
         showNextMessage();
+    } else if (mistakes === bodyParts.length) {
+        // Reproducir sonido de respuesta incorrecta
+        lostMessage();
     }
-    
+
+    // Verifica si todas las palabras han sido completadas
+    let allWordsCompleted = true;
+    for (const word of Object.keys(wordHints)) {
+        if (!wordContainer.textContent.includes(word)) {
+            allWordsCompleted = false;
+            break;
+        }
+    }
+
+    if (allWordsCompleted) {
+        // Redirigir a la página MemorFelicita.html si todas las palabras se han completado correctamente
+        window.location.href = "/juegos/ahorcado/felicidades";
+    } else if (currentWord === "VIOLETA" && hits === selectedWord.length) {
+        // Redirigir a la página MemorFelicita.html si la palabra actual es "VIOLETA" y se ha completado correctamente
+        window.location.href = "/juegos/ahorcado/felicidades";
+    }
 };
+
+
 
 const correctLetter = letter => {
     const { children } = wordContainer;
@@ -124,11 +163,16 @@ const drawWord = () => {
     wordContainer.appendChild(hintElement);
 };
 
-const selectRandomWord = () => {
+let wordIndex = 0; // Variable para almacenar el índice de la palabra actual seleccionada
+let currentWord; // Variable para almacenar la palabra actual que estás intentando adivinar
+
+const selectNextWord = () => {
     const words = Object.keys(wordHints);
-    let word = words[Math.floor((Math.random() * words.length))];
-    selectedWord = word.split('');
-    selectedWordHint = wordHints[word];
+    const currentIndex = words.indexOf(currentWord);
+    const nextIndex = (currentIndex + 1) % words.length; // Avanzar al siguiente índice circularmente
+    currentWord = words[nextIndex];
+    selectedWord = currentWord.split('');
+    selectedWordHint = wordHints[currentWord];
 };
 
 const drawHangMan = () => {
@@ -154,10 +198,17 @@ const pistaFunction = (word) => {
 
 const showNextMessage = () => {
     const messageElement = document.createElement('p');
-    messageElement.textContent = 'Pasa a la siguiente';
+    messageElement.textContent = 'Pasa a la siguiente !Next¡';
+    messageElement.style.fontSize = '24px'; // Tamaño de fuente más grande
+    messageElement.style.fontWeight = 'bold'; // Texto en negrita
     wordContainer.appendChild(messageElement);
+
+    findWordAudio.play();
+
 };
 
+const newButton = document.getElementById('newButton');
+newButton.style.display = 'none';
 
 const startGame = () => {
     usedLetters = [];
@@ -165,8 +216,10 @@ const startGame = () => {
     hits = 0;
     wordContainer.innerHTML = '';
     usedLettersElement.innerHTML = '';
+    cargarIconos();
+    cargarIconos2();
     drawHangMan();
-    selectRandomWord();
+    selectNextWord(); // Utiliza la función selectNextWord en lugar de selectRandomWord
     drawWord();
 
     // Muestra las imágenes de las letras al iniciar el juego
@@ -184,9 +237,10 @@ const startGame = () => {
 
     // Mostrar pista
     pistaFunction(selectedWord.join(''));
+
+    newButton.style.display = 'block';
+
 };
-
-
 
 const restartGame = () => {
     // Reinicia el juego
@@ -202,7 +256,6 @@ const restartGame = () => {
 };
 
 // Agrega el evento click al botón "Nuevo"
-const newButton = document.getElementById('newButton');
 newButton.addEventListener('click', restartGame);
 
 startButton.addEventListener('click', startGame);

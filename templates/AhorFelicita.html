@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Felicidades</title>
+    <style>
+       header {
+           width: 100%;
+           background-size: cover;
+           position: relative;
+       }
+
+        body {
+            margin: 0;
+            background-image: url("{{ url_for('static', filename='imgs/FondoGif5.gif') }}");
+            background-size: cover; 
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: rgba(21, 4, 59, 0.911);
+            color: rgb(241, 242, 239);
+            font-family: 'Arial', sans-serif;
+        }
+
+        #mensajeFelicidades {
+            font-size: 100px;
+            margin-top: 2%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #mensajeFelicidades2 {
+            font-size: 80px;
+            margin-top: 1%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .nuevo-juego {
+            cursor: pointer;
+            background: linear-gradient(rgb(181, 184, 117), rgba(186, 100, 100, 0.838));
+            padding: 20px;
+            border-radius: 50px;
+            font-size: 130%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            margin-top: 5%;
+        }
+
+        nav {
+            text-align: right;
+            padding: 10px 50px 0 0;
+            margin-top: -70px;
+        }
+
+        nav > a {
+            color: #fff;
+            font-weight: 300px;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        nav > a:hover {
+            text-decoration: underline;
+        }
+
+        @media screen and (max-width:500px){
+    nav{
+        text-align: center;
+        padding: 10px 0 0 0;
+    }
+
+    nav > a{
+        margin-right: 5px;
+    }
+    }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/acercade">Acerca de nosotros</a>
+            <a href="/aprende">Aprende</a>
+            <a href="/juegos">Juegos</a>
+        </nav>
+    </header>
+
+    <h1 id="mensajeFelicidades">¡Felicidades!</h1>
+    <h1 id="mensajeFelicidades2">Has completado el juego</h1>    
+
+    <!-- Botón "Nuevo Juego" -->
+    <div class="nuevo-juego" onclick="nuevoJuego()" style="color: #070614a3;">
+        Nuevo Juego
+    </div>
+
+    <script>
+        const mensajeFelicidades = document.getElementById('mensajeFelicidades');
+        const mensajeFelicidades2 = document.getElementById('mensajeFelicidades2');
+        const botonNuevoJuego = document.querySelector('.nuevo-juego');
+
+        // Función para mostrar la palabra "Felicidades" y el botón con animación de opacidad
+        function mostrarFelicidades() {
+            mensajeFelicidades.style.opacity = 1;
+            mensajeFelicidades2.style.opacity = 1;
+            botonNuevoJuego.style.opacity = 1;
+        }
+
+        // Muestra automáticamente la palabra "Felicidades" y el botón después de un tiempo (por ejemplo, 3 segundos)
+        setTimeout(mostrarFelicidades, 1000);
+
+
+        // Crea fuegos artificiales
+        const fireworksCanvas = document.createElement('canvas');
+        fireworksCanvas.width = window.innerWidth;
+        fireworksCanvas.height = window.innerHeight;
+        fireworksCanvas.style.position = 'fixed';
+        fireworksCanvas.style.top = '0';
+        fireworksCanvas.style.left = '0';
+        fireworksCanvas.style.pointerEvents = 'none';
+        document.body.appendChild(fireworksCanvas);
+
+        const fireworksContext = fireworksCanvas.getContext('2d');
+        const particles = [];
+
+        // Función para crear una partícula de fuego artificial
+        function createParticle(x, y) {
+            const particle = {
+                x,
+                y,
+                size: Math.random() * 2 + 1,
+                speedX: Math.random() * 3 - 1.5,
+                speedY: Math.random() * 3 - 1.5,
+                color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+            };
+            particles.push(particle);
+        }
+
+        // Función para animar las partículas de fuegos artificiales
+        function animateFireworks() {
+            fireworksContext.clearRect(0, 0, fireworksCanvas.width, fireworksCanvas.height);
+
+            particles.forEach((particle, index) => {
+                particle.x += particle.speedX;
+                particle.y += particle.speedY;
+
+                if (particle.size > 0.2) particle.size -= 0.1;
+
+                fireworksContext.fillStyle = particle.color;
+                fireworksContext.beginPath();
+                fireworksContext.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                fireworksContext.fill();
+            });
+
+            particles.forEach((particle, index) => {
+                if (particle.size <= 0.2) particles.splice(index, 1);
+            });
+
+            requestAnimationFrame(animateFireworks);
+        }
+
+        // Crea automáticamente fuegos artificiales después de un tiempo (por ejemplo, 1 segundo)
+        setTimeout(() => {
+            // Inicia la animación de fuegos artificiales
+            animateFireworks();
+
+            // Crea nuevas partículas cada 0.1 segundos durante 10 segundos
+            const intervalId = setInterval(() => {
+                for (let i = 0; i < 5; i++) {
+                    createParticle(Math.random() * window.innerWidth, Math.random() * window.innerHeight);
+                }
+            }, 100);
+
+            setTimeout(() => {
+                clearInterval(intervalId);
+            }, 100000000000); // Detiene la creación de partículas después de 10 segundos
+        }, 1000);
+
+        // Función para reiniciar el juego al hacer clic en "Nuevo Juego"
+        function nuevoJuego() {
+            // Agrega aquí la lógica para reiniciar el juego o redirigir a la página principal del juego
+            window.location.href = '/juegos/ahorcado';
+        }
+    </script>
+</body>
+
+</html>
