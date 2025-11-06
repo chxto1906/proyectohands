@@ -17,6 +17,8 @@ CLASSIFIER = None
 
 socketio = SocketIO(app)
 
+print('hola')
+
 def generate_frames_img():
     """
     Funcion que genera imagen en base a la imagen capturada por la camara
